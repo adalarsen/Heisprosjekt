@@ -22,7 +22,7 @@ int hw_get_elev_button_status(int floor) {
 }
 
 int hw_open_door() {
-	if ((elev_get_floor_sensor_signal(void) != -1) && (DIRN_STOP == 0)) {
+	if ((elev_get_floor_sensor_signal() != -1) && (DIRN_STOP == 0)) {
 		elev_set_door_open_lamp(1);
 		return 1;
 }
@@ -32,7 +32,7 @@ int hw_open_door() {
 }
 
 int hw_close_door() {
-		if ((elev_get_floor_sensor_signal(void) != -1) && (DIRN_STOP == 0)) {
+		if ((elev_get_floor_sensor_signal() != -1) && (DIRN_STOP == 0)) {
 		elev_set_door_open_lamp(0);
 		return 1;
 }
@@ -57,7 +57,15 @@ int hw_set_direction(int direction) {
 	return -1;
 }
 
-int hw_set_floor_light() {
-
+void hw_set_floor_light(int floor) {
+    elev_set_floor_indicator(floor);
+	return 0;
 }
+
+int hw_set_elev_light(int floor, int value) {
+	if (elev_get_floor_sensor_signal() == floor) {
+	elev_set_button_lamp(BUTTON_COMMAND,floor,value);
+}
+}
+
 
