@@ -23,4 +23,4 @@ int hw_set_stop_button_light(int value);
 
 int hw_get_stop_button_status();
 
-
+void hw_set_floor_light();
