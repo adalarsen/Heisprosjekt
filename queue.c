@@ -1,33 +1,70 @@
-#include "queue.c"
-#include "io.h"
-#include "hw.h"
-#include "elev.h"
-#include "fsm.h"
-#include "queue.c"
+#include "queue.h"
+#include "elevator_fsm.h"
 
+int orders[10] = {0} //0-3: bestillingsknapper inni heisen, 4-6: opp-knapper,7-9: ned-knapper 
 
-int q_check_floor(order_description current_order, int current_floor){
-	if (current_order.order[0]==current_floor) {
-		return 1;
-	else {
-		return 0;
+int q_check_floor(int current_floor); //tar inn etasjen den er i, sjekker i orders om gjeldende etasje er bestilt
+	switch(current_floor) {
+		case 0:
+			if (orders[0]==1 || orders[4]==1) {
+				return 1;
+			}
+			return 0;
+		case 1:
+			if (orders[1]==1 || orders[5]==1 || orders[7]==1) {
+				return 1;
+			}
+			return 0;
+		case 2:
+			if (orders[2]==1 || orders[6]==1 || orders[8]==1) {
+				return 1;
+			}
+			return 0;
+		case 3:
+			if (orders[3]==1 || orders[9]) {
+				return 1;
+			}
+			return 0;
 }
 
-void q_delete_order(){
-	for (int i=0; i<19; i++) {
-		orders[i]=orders[i+1];
-	}
-	orders[19]=0;
+void q_delete_order(int current_floor){
+	switch(current_floor) {
+		case 0:
+                        orders[0]=0;
+			orders[4]=0;
+			break;
+                case 1:
+			orders[1]=0;
+			orders[5]=0;
+			orders[7]=0;
+			break;
+                       
+                case 2:
+			orders[2]=0;
+			orders[6]=0;
+			orders[8]=0;
+                    	break;
+
+                case 3:
+			orders[3]=0;
+			orders[9]=0;
+                        break;
 }
 
 void q_delete_all(){
-	order_queue_init();
+	for (int i=0;i<10;i++) {
+		orders[i]=-1;
+	}
 }
 
-order_description q_get_order(){
-	return orders[0];
+int q_get_order(){
+	if (q_check_floor(0)==1) {
+		if (orders[0]==1 || orders[4]==1) {
+			return 0;
+		else if (orders[2]=
+		
 }
 
-void q_store_order(order_description new_order){ //lagrer en ny bestilling i koen
-
+void q_store_order(int button_pressed){ //lagrer en ny bestilling i koen
+	orders[button_pressed] = 1;
 }
