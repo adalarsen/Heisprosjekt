@@ -4,7 +4,7 @@
 // 2007, Martin Korsgaard
 #ifndef __INCLUDE_DRIVER_H__
 #define __INCLUDE_DRIVER_H__
-
+#include "elevator_fsm.h"
 
 // Number of floors
 #define N_FLOORS 4
