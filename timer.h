@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "elev.h"
 
 bool timer_start();
 
