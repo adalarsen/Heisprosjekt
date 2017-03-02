@@ -4,8 +4,7 @@
 
 void fsm_elev_on();
 
-void fsm_floor_button_pressed(order_description new_order, );
+int fsm_update_floor(int floor);
 
-void fsm_elev_button_pressed();
+void fsm_stop_button_pressed();
 
-void fsm_is_on_floor();
