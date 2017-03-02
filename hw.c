@@ -8,10 +8,16 @@ void hw_close_door() {                                                          
 
 
 int hw_open_door() {                                                                    //set door light
+<<<<<<< HEAD
         if ((elev_get_floor_sensor_signal() != -1) && (DIRN_STOP == 0)) {               //fanger opp mulige feil saann at doren aldri kan aapnes dersom heisen ikke er i en etasje og ikke i ro
                 elev_set_door_open_lamp(1);
 }
         else {
+=======
+        if ((elev_get_floor_signal() != -1)
+		elev_set_door_open_lamp(1);
+}	else {
+>>>>>>> 8da4e2bac08cf3235798427fb87715f47ca4d7f4
                 elev_set_door_open_lamp(0);
 }
 }

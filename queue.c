@@ -1,10 +1,14 @@
 #include "queue.h"
 #include "elevator_fsm.h"
 
+<<<<<<< HEAD
 int orders[10] = {0} //0-3: bestillingsknapper inni heisen, 4-6: opp-knapper,7-9: ned-knapper 
 int direction = 0;
+=======
+int orders[10] = {0} //0-3: ordering buttons inside the elevator, 4-6: up buttons,7-9: down buttons
+>>>>>>> 8da4e2bac08cf3235798427fb87715f47ca4d7f4
 
-int q_check_floor(int current_floor); //tar inn etasjen den er i, sjekker i orders om gjeldende etasje er bestilt
+int q_check_floor(int current_floor) {				 //tar inn etasjen den er i, sjekker i orders om gjeldende etasje er bestilt
 	switch(current_floor) {
 		case 1:
 			if (orders[0]==1 || orders[4]==1) {
@@ -26,9 +30,10 @@ int q_check_floor(int current_floor); //tar inn etasjen den er i, sjekker i orde
 				return 1;
 			}
 			return 0;
+	}
 }
 
-void q_delete_order(int current_floor){
+void q_delete_order(int current_floor){				//deletes all orders in a given floor
 	switch(current_floor) {
 		case 1: 
             orders[0]=0;
@@ -50,6 +55,7 @@ void q_delete_order(int current_floor){
 			orders[3]=0;
 			orders[9]=0;
                         break;
+	}
 }
 
 void q_delete_all(){
@@ -58,6 +64,7 @@ void q_delete_all(){
 	}
 }
 
+<<<<<<< HEAD
 int q_get_order(int current_floor, int current_direction){
     if (hw_check_floor(current_floor)) {
         if (orders[current_floor-1]) {
@@ -122,6 +129,16 @@ int q_get_order(int current_floor, int current_direction){
 
     if (hw_check_floor(current_floor)) {
         if current_direction    
+=======
+int q_get_order(){
+	if (q_check_floor(0)==1) {
+		if (orders[0]==1 || orders[4]==1) {
+			return 0;
+		else if (orders[2]=
+		
+		}
+	}
+>>>>>>> 8da4e2bac08cf3235798427fb87715f47ca4d7f4
 }
 
 void q_store_order(int button_pressed){ //lagrer en ny bestilling i koen

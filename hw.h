@@ -16,7 +16,7 @@ int hw_get_elev_button_status(int floor);		//return 1 if elevator button is push
 
 int hw_get_floor_button_status(int floor);		//return 1 if floor button for up is pushed, -1 for down, 2 if both are pushed at the same time and 0 if none are pushed
 
-void hw_set_elev_button_light(int floor);			//set light in elevator button if the correct button for floor is pushed
+void hw_set_elev_button_light(int floor);		//set light in elevator button if the correct button for floor is pushed
 
 void hw_set_stop_button_light(int value);		//set stop button light to 1 for on and 0 for off
 
