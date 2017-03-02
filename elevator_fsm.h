@@ -2,10 +2,6 @@
 #include "queue.h"
 
 
-void fsm_elev_on();
-
-void fsm_floor_button_pressed(order_description new_order, );
-
-void fsm_elev_button_pressed();
-
-void fsm_is_on_floor();
+void fsm_elev_on(); 					//initializes the queue
+int fsm_update_floor(int floor);		//updates the queue when a new floor is passed
+void fsm_stop_button_pressed();			//deletes all entries in the queue when the stop button is pushed
