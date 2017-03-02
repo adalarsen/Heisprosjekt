@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "elev.h"
 
-bool timer_start();
+int timer_start();
 
-bool timer_is_time_out();
+int timer_is_time_out();
 
 
 

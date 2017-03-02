@@ -24,4 +24,4 @@ int hw_get_stop_button_status();			//return 1 if stop button is pushed
 
 void hw_set_floor_indicator_light(int floor);		//set elevator indicator light for floor
 
-void hw_set_floor_button_light(int floor);		//set light in floor buttons if pushed
+void hw_set_floor_button_light(int floor, int button, int value);		//set light in floor buttons if pushed

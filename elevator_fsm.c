@@ -6,10 +6,6 @@
 *Enum som navngir konstantene etasjeknapper, heisretning, etasje og  
 *om heisen skal stoppe eller fortsette i etasjen den er i. 
 *********************/
-enum ELEV_BUTTONS = {FIRST, SECOND, THIRD, FORTH, FIRST_UP, SECOND_UP, THIRD_UP, SECOND_DOWN, THRID_DOWN, FORTH_DOWN};
-enum DIRECTIONS = {UP = 1, DOWN = -1, STOP = 0};
-enum FLOOR = {NO_FLOOR, FIRST_FLOOR, SECOND_FLOOR} 
-enum NEXT_STATE = {STOP, CONTINUE};
 
 int current_floor = -1;				//constant keeping track of what floor the elevator is at
 int last_floor_passed = -1;			//constant keeping track of what floor the elevator most recently passed

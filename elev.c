@@ -53,7 +53,7 @@ int elev_init(void) {
     elev_set_floor_indicator(0);
 
     // Return success.
-    return 1;k
+    return 1;
 }
 
 void elev_set_motor_direction(elev_motor_direction_t dirn) {
