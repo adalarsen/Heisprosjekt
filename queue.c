@@ -3,7 +3,7 @@
 
 int orders[10] = {0} //0-3: bestillingsknapper inni heisen, 4-6: opp-knapper,7-9: ned-knapper 
 
-int q_check_floor(int current_floor); //tar inn etasjen den er i, sjekker i orders om gjeldende etasje er bestilt
+int q_check_floor(int current_floor) {				 //tar inn etasjen den er i, sjekker i orders om gjeldende etasje er bestilt
 	switch(current_floor) {
 		case 0:
 			if (orders[0]==1 || orders[4]==1) {
@@ -25,6 +25,7 @@ int q_check_floor(int current_floor); //tar inn etasjen den er i, sjekker i orde
 				return 1;
 			}
 			return 0;
+	}
 }
 
 void q_delete_order(int current_floor){
@@ -49,7 +50,9 @@ void q_delete_order(int current_floor){
 			orders[3]=0;
 			orders[9]=0;
                         break;
+	}
 }
+
 
 void q_delete_all(){
 	for (int i=0;i<10;i++) {
@@ -57,13 +60,17 @@ void q_delete_all(){
 	}
 }
 
+
 int q_get_order(){
 	if (q_check_floor(0)==1) {
 		if (orders[0]==1 || orders[4]==1) {
 			return 0;
 		else if (orders[2]=
 		
+		}
+	}
 }
+
 
 void q_store_order(int button_pressed){ //lagrer en ny bestilling i koen
 	orders[button_pressed] = 1;
