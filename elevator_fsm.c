@@ -7,6 +7,24 @@
 *******************************/
 int current_floor = -1;				
 int last_floor_passed = -1;			
+int current_state = INIT
+
+
+/*******************************
+*initizaling the elevator by moving the elevator to floor 1. 
+*******************************/
+void fsm_init() {
+	int floor = elev_get_floor_sensor_signal()
+	while(floor != 0) {
+		elev_set_motor_direction(DIRN_DOWN);
+		if (floor == 0) {
+			current_floor = floor;
+			elev_set_motor_direction(DIRN_STOP);
+		}
+	}
+	current_state = IDLE;
+}
+
 
 /*******************************
 *initializing the queue to empty.

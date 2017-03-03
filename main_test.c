@@ -7,6 +7,25 @@
 
 
 void main() {
+	
+	/*
+	forslag til main:
+	
+	//event: check if stop button is pressed (kjør fsm_stop_button_pressed, fsm_stop_button_released osv) 
+	
+	//event: saves orders (poller på alle knappene) - hvis knapp trykker - fsm_button_pushed - lag en order
+	
+	//event: check if orders exist (hvis order har blitt laget - fsm_order_exists - utfør) 
+	
+	//event: check if correct floor is reached (check_floor - hvis riktig - fsm_correct_floor_reached - slå på lys osv osv, skru på tid ) 
+
+	//event: check if time is out (sjekk om tid som har blitt skrudd på e ferdig)
+	
+	
+	*/
+	
+	
+	
 	int lights[15] = {0};                       //0-3 elev light, 4-6 button up light, 7-9 button down light, 10-13 indicator light, 14 stop button light
         int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
         int floor_indicators[4] = {0};          //0-3 floor indicator sensors
@@ -24,6 +43,11 @@ void main() {
         fsm_elev_on();
         
 	while (1) {
+		
+	
+		
+		
+		
 		int floor_ordered = fsm_get_order();
 		if (floor_ordered>current_floor) {
 			direction = hw_set_direction(1);
@@ -32,7 +56,7 @@ void main() {
 		}
 		current_floor = hw_get_floor();
 		while (current_floor != floor_ordered) {
-		
+			
 	        }
 
 		while (floor_ordered == 0) {
