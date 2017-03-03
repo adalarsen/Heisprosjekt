@@ -152,19 +152,21 @@ int q_get_order(int current_floor, int current_direction){
 	if (current_direction == -1) {						//check down buttons
 		for (int i=7; i<10; i++) {
 			if (orders[i]==1) {
-				return i-6;					//return the floor where the down button is pushed
+				return i-5;					//return the floor where the down button is pushed
+			}
 		}
 	}
+	return NO_FLOOR;
 }
 
 
 
 
 /************************************
-*stores a 1 (new order) in orders at index button_pressed
+*stores a new order in the order queue at index button_pressed
 ************************************/
 void q_store_order(int button_pressed){ 			
-	orders[button_pressed] = 1;				//button_pressed is the index of an order in the order_buttons array in main
+	orders[button_pressed] = 1;				//button_pressed is the index of an order button in the order_buttons array in main
 }
 
 
