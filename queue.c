@@ -8,7 +8,7 @@ int orders[10] = {0} //order queue. 0-3: order buttons inside the elevator, 4-6:
 /************************************
 *returns 1 if there is an order on current_floor
 ************************************/
-int q_check_floor(int current_floor) {
+int q_check_floor(FLOOR current_floor) {
 	switch(current_floor) {
 		case 1:
 			if (orders[0]==1 || orders[4]==1) {			//check orders on first floor
@@ -41,7 +41,7 @@ int q_check_floor(int current_floor) {
 /************************************
 *deletes all orders on current_floor
 ************************************/
-void q_delete_order(int current_floor){					
+void q_delete_order(FLOOR current_floor){					
 	switch(current_floor) {
 		case 1: 
             orders[0]=0;
@@ -86,7 +86,7 @@ void q_delete_all(){
 *return the floor where the next order to be executed is
 *function will loop in main when the elevator reaches a floor, therefore it cannot be used if elevator is on NO_FLOOR (0) 
 ***********************************/
-int q_get_order(int current_floor, int current_direction){    
+FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction){    
 	if (q_check_floor(current_floor)) {					//check if there is an order on the elevator's current floor
         	if (orders[current_floor-1]) {					//returns the current floor if there is an order from inside the elevator to stop on that floor
             		return current_floor; 
