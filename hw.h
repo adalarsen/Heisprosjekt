@@ -1,5 +1,4 @@
 #include "elev.h"
-#include "io.h"
 #include <stdio.h>
 
 
@@ -10,7 +9,7 @@ void hw_open_door();                                    //set door light
 
 int hw_get_floor();					//return 0-3 if elevator is on a floor, -1 if between floors, above 4th floor or below 1st floor
 
-void hw_set_direction(int direction);			//set motor direction to 1 for up, -1 for down and 0 for stop
+int hw_set_direction(int direction);			//set motor direction to 1 for up, -1 for down and 0 for stop and return direction to the global variable
 
 int hw_get_elev_button_status(int floor);		//return 1 if elevator button is pushed for floor between 0-3, return 0 if not 
 
