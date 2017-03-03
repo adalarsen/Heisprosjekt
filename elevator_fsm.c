@@ -37,3 +37,10 @@ void fsm_stop_button_pressed(){
 	q_delete_all();
 }
 
+/*******************************
+*returns next order to main 
+*******************************/
+int fsm_get_order() {
+	return q_get_order();
+}
+
