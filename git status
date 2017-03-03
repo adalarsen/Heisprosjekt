@@ -1,0 +1,78 @@
+* [33m77e0e59[m[33m ([1;36mHEAD[m[33m, [1;31morigin/master[m[33m, [1;31morigin/HEAD[m[33m, [1;32mmaster[m[33m)[m Lab uke 9, gjør store fremskritt. God arbeidsflyt. God stemning.
+*   [33m48a9a41[m Fix conflicts, div
+[32m|[m[33m\[m  
+[32m|[m * [33m8da4e2b[m Ser det ann
+[32m|[m *   [33m49038f3[m Merge branch 'jenny'
+[32m|[m [34m|[m[35m\[m  
+[32m|[m [34m|[m *   [33m858e7eb[m Fixing conflicts
+[32m|[m [34m|[m [36m|[m[1;31m\[m  
+[32m|[m [34m|[m * [1;31m|[m [33mc322b0d[m kffk
+[32m|[m [34m|[m * [1;31m|[m [33m791095c[m dette er en drittfil som skal slettes
+[32m|[m [34m|[m * [1;31m|[m [33m63702a6[m gjlsd
+[32m|[m [34m|[m * [1;31m|[m [33m653ca60[m fikset ting
+[32m|[m * [1;31m|[m [1;31m|[m [33m57a570f[m ødelegging av ting
+[32m|[m [1;31m|[m [1;31m|[m[1;31m/[m  
+[32m|[m [1;31m|[m[1;31m/[m[1;31m|[m   
+* [1;31m|[m [1;31m|[m [33mfd8ce99[m fkffkf
+[1;31m|[m[1;31m/[m [1;31m/[m  
+* [1;31m|[m [33m2b9a9aa[m endret stuff
+* [1;31m|[m   [33m1afc518[m Merge branch 'master' of https://github.com/adalarsen/Heisprosjekt
+[1;32m|[m[1;33m\[m [1;31m\[m  
+[1;32m|[m * [1;31m|[m [33m33957a1[m Delete .hw.h.swp
+[1;32m|[m * [1;31m|[m [33md6db3a2[m Delete hw.c~
+[1;32m|[m [1;31m|[m[1;31m/[m  
+[1;32m|[m * [33m27f1f4d[m la til flere hw-funksjoner
+[1;32m|[m * [33m3283d3d[m kommenterte alle funksjoner
+* [1;33m|[m [33m976a1c4[m Endret på saker og ting
+[1;33m|[m[1;33m/[m  
+*   [33mea2508e[m Merging
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [33mc70630d[m Delete fsm.c
+[1;34m|[m * [33m5874d4a[m Delete fsm.h
+* [1;35m|[m [33mcb06c15[m ryddet i include
+* [1;35m|[m [33m5c9a442[m lagde ting på nytt
+* [1;35m|[m [33m49f7918[m fikset litt
+* [1;35m|[m [33m2a72705[m fjfj
+* [1;35m|[m [33m0874bf6[m ryddet i include
+* [1;35m|[m [33mf2fe80b[m slettet nesten alt
+* [1;35m|[m [33m4c2b223[m ja
+* [1;35m|[m [33maccad01[m lagde en tullemain
+[1;35m|[m[1;35m/[m  
+* [33ma475deb[m provde å skjonne struct, fikk det ikke til
+* [33me8723ac[m oppdaterte fsm.h
+* [33m4e5b9a7[m lagde fsm-funksjoner
+* [33m88244d5[m hei
+*   [33m657c08f[m Merge https://github.com/adalarsen/Heisprosjekt
+[1;36m|[m[31m\[m  
+[1;36m|[m * [33m0d319a9[m udugelig fil 2
+[1;36m|[m * [33m66cf303[m udugelig fil
+* [31m|[m   [33m1b7cfe1[m Merge branch 'master' of https://github.com/adalarsen/Heisprosjekt
+[32m|[m[31m\[m [31m\[m  
+[32m|[m [31m|[m[31m/[m  
+[32m|[m * [33m7be9a2a[m Lagt til lys-funksjoner
+[32m|[m * [33m3a2cb8c[m Lagt til huskeliste
+[32m|[m * [33meb06937[m La til hw-funksjoner
+* [33m|[m [33m4ec8e69[m prover igjen
+* [33m|[m [33m944cbe2[m gjorde noe her
+* [33m|[m [33m366c9a3[m la til noe greier
+* [33m|[m [33mf20dc5b[m la inn funksjonsdeklarasjoner
+* [33m|[m [33mc27c510[m la til alle funksjoner i queue.h
+[33m|[m[33m/[m  
+* [33m3c3e170[m la til alle funksjoner i hw.h
+* [33mec222e6[m la til alle funksjoner i timer.h
+* [33m3a3e7f4[m la til fsm.h
+* [33mcb28279[m endret headerfiler
+* [33m8108fea[m timer-filer
+* [33m98a1cc5[m Opprettet hw.h
+* [33maa85a2e[m Opprettet fsm-filene
+* [33md6e26df[m Opprettet queue.c
+* [33m077a4e8[m Opprettet queue.h
+* [33m831da3a[m Create README.md
+* [33mb30d032[m Add files via upload
+* [33m226be3a[m Delete localfile.txt
+* [33maefc7d0[m Delete localfile.txt~
+* [33mf103b12[m Delete test.txt
+* [33m5fff6ab[m Delete README.md
+* [33mf2d0024[m testing
+* [33mbaf3b88[m Create test.txt
+* [33m1c55b61[m Initial commit

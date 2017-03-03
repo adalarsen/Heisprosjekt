@@ -2,11 +2,11 @@
 
 clock_t global_clock;
 
-void start_timer(){
+void timer_start(){
     global_clock = clock();
 }
 
-int is_timeout(){
+int timer_is_time_out(){
     clock_t current_time = clock();
     clock_t difftime = current_time - global_time;
     if(difftime / CLOCKS_PER_SEC >= 3){

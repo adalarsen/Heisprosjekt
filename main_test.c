@@ -23,7 +23,7 @@ void main() {
 
         while(1) {
 
-            while(!is_timeout()){
+        while(!timer_is_time_out()){
                 ....
         
         while(hw_get_stop_button_status()){
