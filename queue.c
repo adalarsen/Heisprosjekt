@@ -38,6 +38,12 @@ int q_check_floor(FLOOR current_floor) {
 
 
 
+
+
+
+
+
+//DELETE FUNCTIONS
 /************************************
 *deletes all orders on current_floor
 ************************************/
@@ -82,6 +88,10 @@ void q_delete_all(){
 
 
 
+
+
+
+//GET AND STORE FUNCTIONS
 /***********************************
 *return the floor where the next order to be executed is
 *function will loop in main when the elevator reaches a floor, therefore it cannot be used if elevator is on NO_FLOOR (0) 
@@ -90,15 +100,15 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
 	if (q_check_floor(current_floor)) {					//check if there is an order on the elevator's current floor
         	if (orders[current_floor-1]) {					//returns the current floor if there is an order from inside the elevator to stop on that floor
             		return current_floor; 
-        } else if (current_direction && (current_floor != FOURTH_FLOOR)) {	//stop if there is an order from outside the elevator in the same direction as the current direction (up) 
+        } else if (current_direction == DIRN_UP && (current_floor != FOURTH_FLOOR)) {	//stop if there is an order from outside the elevator in the same direction as the current direction (up) 
             	if (orders[current_floor + 3]) {
                 	return current_floor;
             	}
-        } else if ((current_direction==-1) && (current_floor !=FIRST_FLOOR)) {	//stop if there is an order from outside the elevator in the same direction as the current direction (down) 
+        } else if ((current_direction == DIRN_DOWN) && (current_floor !=FIRST_FLOOR)) {	//stop if there is an order from outside the elevator in the same direction as the current direction (down) 
             	if (orders[current_floor + 6]) {
                 	return current_floor;
                 }
-        } else if (current_direction == 0) {					//stop if the elevator is in idle and on a floor, and there is a new order on that floor 
+        } else if (current_direction == DIRN_STOP) {					//stop if the elevator is in idle and on a floor, and there is a new order on that floor 
             	switch (current_floor) {
                 	case 1:
                     		if (orders[0] || orders[4]) {
@@ -117,7 +127,7 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
          	}
     	}
 
-    	if (current_direction == 0) {						//search for a new order if the elevator is in idle and the order queue is empty
+    	if (current_direction == DIRN_STOP) {						//search for a new order if the elevator is in idle and the order queue is empty
             	for (int i=0;i<10;i++) {
             		if(orders[i]==1){
                 		switch(i) {
@@ -141,7 +151,7 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
     		return NO_FLOOR;
     	}
     	
-	if (current_direction) {						//check up buttons
+	if (current_direction == DIRN_UP) {						//check up buttons
 		for (int i=4; i<7; i++) {
 			if (orders[i]==1) {
 				return i-3;					//return the floor where the up button is pushed
@@ -149,7 +159,7 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
 		}	
 	}
 	
-	if (current_direction == -1) {						//check down buttons
+	if (current_direction == DIRN_DOWN) {						//check down buttons
 		for (int i=7; i<10; i++) {
 			if (orders[i]==1) {
 				return i-5;					//return the floor where the down button is pushed
@@ -165,8 +175,8 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
 /************************************
 *stores a new order in the order queue at index button_pressed
 ************************************/
-void q_store_order(int button_pressed){ 			
-	orders[button_pressed] = 1;				//button_pressed is the index of an order button in the order_buttons array in main
+void q_store_order(int new_order){ 	
+	orders[new_order] = 1;							//button_pressed is the index of an order button in the order_buttons array in main
 }
 
 
