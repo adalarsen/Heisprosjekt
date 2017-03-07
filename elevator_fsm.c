@@ -12,7 +12,9 @@
 *******************************/
 FLOOR current_floor = NO_FLOOR;
 STATE current_state = INIT;
-DIRECTION direction;
+elev_motor_direction_t direction;
+
+
 
 
 //INITIALIZE
@@ -36,7 +38,6 @@ void fsm_init() {
         q_delete_all();										//delete all orders in the order queue
 	current_state = IDLE;									//when elevator har reached the 1st floor it is in idle and ready to take orders
 }
-
 
 
 /*******************************
@@ -67,30 +68,30 @@ int fsm_floor_reached(FLOOR floor){
                 switch (current_state) {
 			case RUN:
 				direction = hw_set_direction(DIRN_STOP);
-				hw_door_open();
-				q_delete_order(current_floor)
-				current_state = DOOROPEN;
                                 hw_set_elev_button_light(current_floor);
-				hw_set_floor_button_light(current_floor, button, 0);
+                                hw_set_floor_button_light(current_floor, button, 0);
+                                q_delete_order(current_floor);
+                                hw_open_door();
                                 timer_start();
-				break;
+				current_state = DOOROPEN;
+                                break;
 			case IDLE:
-				hw_set_direction(DIRN_STOP);
-				hw_open_door();
-				q_delete_order(current_floor);
-				current_state = DOOROPEN;
-				timer_start();
-                                hw_set_elev_button_light(current_floor);
+				direction = hw_set_direction(DIRN_STOP);
+				hw_set_elev_button_light(current_floor);
                                 hw_set_floor_button_light(current_floor, button, 0);
-				break;
+                                q_delete_order(current_floor);
+                                hw_open_door();
+				timer_start();
+				current_state = DOOROPEN;
+                                break;
 			case INIT:
-				hw_open_door();
-				q_delete_order(current_floor);
-				current_state = DOOROPEN;
-				timer_start();
-                                hw_set_elev_button_light(current_floor);
+				hw_set_elev_button_light(current_floor);
                                 hw_set_floor_button_light(current_floor, button, 0);
-				break;
+                                q_delete_order(current_floor);
+                                hw_open_door();
+				timer_start();
+				current_state = DOOROPEN;
+                                break;
 			case STOPBUTTON:
                                 break;
 			case DOOROPEN:
@@ -101,7 +102,6 @@ int fsm_floor_reached(FLOOR floor){
                 }
 	}
 }
-
 
 		
 /*******************************
@@ -178,7 +178,6 @@ void fsm_order_exists() {
 }
 
 
-
 /*******************************
 *stores a new order when button is pressed
 *******************************/
@@ -253,7 +252,6 @@ void fsm_stop_button_pressed(){
 }
 
 
-
 /*******************************
 *deletes all orders in the queue if the stop button is pushed.
 *******************************/
@@ -274,7 +272,6 @@ void fsm_stop_button_released() {
 			break;
 	}
 }
-
 
 
 /*******************************
@@ -305,8 +302,17 @@ void fsm_set_indicator(int floor) {
 /*******************************
 *checks if 3 seconds has passed
 *******************************/
-void fsm_is_time_out() {
-	return timer_is_time_out();
+void fsm_time_out() {
+  switch (current_state) {
+    case DOOROPEN:
+      hw_close_door();
+      break;
+    case RUN:
+    case IDLE:
+    case STOPBUTTON:
+    case INIT:
+      break;
+    }
 }
 
 

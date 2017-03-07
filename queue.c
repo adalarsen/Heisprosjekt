@@ -176,7 +176,7 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
 *stores a new order in the order queue at index button_pressed
 ************************************/
 void q_store_order(int new_order){ 	
-	orders[new_order] = 1;							//button_pressed is the index of an order button in the order_buttons array in main
+	orders[new_order-1] = 1;							//button_pressed is the index of an order button in the order_buttons array in main
 }
 
 

@@ -4,7 +4,7 @@
 
 
 
-typedef enum {FIRST, SECOND, THIRD, FORTH, FIRST_UP, SECOND_UP, THIRD_UP, SECOND_DOWN, THRID_DOWN, FORTH_DOWN} ELEV_BUTTONS;	//enum stating the elev button constants
+typedef enum {FIRST, SECOND, THIRD, FOURTH, FIRST_UP, SECOND_UP, THIRD_UP, SECOND_DOWN, THIRD_DOWN, FOURTH_DOWN} ELEV_BUTTONS;	//enum stating the elev button constants
 typedef enum {UP = 1, DOWN = -1, STOP = 0} DIRECTION;											//enum stating the elevator directions
 typedef enum {NO_FLOOR, FIRST_FLOOR, SECOND_FLOOR, THIRD_FLOOR, FOURTH_FLOOR} FLOOR;				//enum stating the names of the elevator floors
 typedef enum {IDLE, RUN, DOOROPEN, STOPBUTTON, INIT} STATE;							//enum stating the next state of the elevator
@@ -22,7 +22,7 @@ void fsm_button_pressed(elev_type_button_t button_pressed, FLOOR floor); 		//
 
 
 //INDICATOR LIGHTS
-void fsm_set_indicator(FLOOR floor);						//set floor indicator light when elevator reaches a new floor
+void fsm_set_indicator(int floor);						//set floor indicator light when elevator reaches a new floor
 
 
 //STOP BUTTON FUNCTIONS
@@ -32,6 +32,5 @@ int fsm_is_stop_button_pressed();			  			//checks if stop button is pushed. Retu
 
 
 //TIMER
-void fsm_timer();
-
+void fsm_time_out();                                                            //close door if time is out (after three seconds)
 
