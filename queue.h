@@ -1,6 +1,5 @@
 #ifndef QUEUE
 #define QUEUE
-//#include "elevator_fsm.h"
 #include "elev.h"
 #include <stdio.h>
 
