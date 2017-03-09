@@ -8,7 +8,7 @@ void timer_start(){
 
 int timer_is_time_out(){
     clock_t current_time = clock();
-    clock_t difftime = current_time - global_time;
+    clock_t difftime = current_time - global_clock;
     if(difftime / CLOCKS_PER_SEC >= 3){
        return 1;
     }

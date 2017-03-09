@@ -9,14 +9,14 @@
 
 
 //INITIALIZE
-void fsm_init();								//initialize elevator
+int fsm_init();								//initialize elevator
 
 
 //ORDER AND FLOOR FUNCTIONS
-int fsm_floor_reached(floor_t floor);						//updates the queue when a new floor is passed
+void fsm_floor_reached(floor_t floor);						//updates the queue when a new floor is passed
 int fsm_get_order();								//returns the next order from queue
-void fsm_order_exists_on_floor();
-void fsm_button_pressed(elev_button_type_t button_pressed, floor_t floor); 		//
+void fsm_order_exists();
+void fsm_button_pressed(int button_pressed); 		//
 
 
 //INDICATOR LIGHTS

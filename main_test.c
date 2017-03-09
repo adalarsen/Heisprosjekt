@@ -12,8 +12,8 @@ void main() {
         int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
 
         // Initialize hardware
-        fsm_init();
-        
+    int sweet_deal =  fsm_init();
+    printf('sweet: %d',sweet_deal);
 	while (1) {
 
 

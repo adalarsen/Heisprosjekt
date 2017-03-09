@@ -63,7 +63,7 @@ int hw_get_floor(){
 *the returned value will be stored in the global variable 'direction'
 ******************************/
 int hw_get_floor_button_status(int floor) { 											
-	floor -=1;
+
         if (elev_get_button_signal(BUTTON_CALL_DOWN, floor) == 1 && elev_get_button_signal(BUTTON_CALL_UP, floor) == 1) {			
 		return 2;								
 }												
@@ -84,7 +84,6 @@ int hw_get_floor_button_status(int floor) {
 *returns 1 if ordered and 0 if not. 
 *******************************/
 int hw_get_elev_button_status(int floor) {
-        floor -=1;
 	return elev_get_button_signal(BUTTON_COMMAND, floor);
 }
 
@@ -121,7 +120,6 @@ elev_motor_direction_t hw_set_direction(elev_motor_direction_t direction) {
 *******************************/
 void hw_set_floor_indicator_light(int floor) {						
     elev_set_floor_indicator(floor);
-	return 0;
 }
 
 
