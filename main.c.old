@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "hw.h"
 #include "timer.h"
+#include "elevator_fsm.h"
+
 
 int main() {
 	int lights[15] = {0};
@@ -15,9 +17,24 @@ int main() {
    	 }
 	
 	// initialiserer heis (koen)
-	fsm_elev_on();
+	fsm_init();
+        
+
+    while(1) {
+        
+    if (hw_get_stop_button_status()) {
+                hw_set_direction(0);
+                break;
+    }
+
+
+
+       
+
 	
-	
+    }
+	return 0;
+}
 
 
 
@@ -44,10 +61,7 @@ int main() {
 
 
 
-
-
-
-
+/*
     	printf("Press STOP button to stop elevator and exit program.\n");
 
     	elev_set_motor_direction(DIRN_UP);
@@ -66,6 +80,4 @@ int main() {
             		break;
         	}
     	}
-
-    	return 0;
-}
+*/
