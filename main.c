@@ -14,7 +14,7 @@ int main() {
         // Initialize hardware
    
         int sweet_deal =  fsm_init();
-        printf("fnutt %d", sweet_deal);
+        printf("sweet deal %d", sweet_deal);
         while (1) {
 
 
@@ -22,14 +22,18 @@ int main() {
        //     int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
             for (int i=0; i<4; i++) {
                 order_buttons[i] = hw_get_elev_button_status(i);
+                printf("hey");
                 if (order_buttons[i]==1) {
                   fsm_button_pressed(i);
                 }
+                printf("hello");
                 int button = hw_get_floor_button_status(i);
+                printf("hey hello %d \n",button);
                 if (button==2) {
                   order_buttons[i+4]=1;
                   order_buttons[i+6]=1;
                   fsm_button_pressed(i+4);
+                  printf("check check");
                   fsm_button_pressed(i+6);
                 } else if (button) {
                   order_buttons[i+4]=1;
@@ -39,7 +43,7 @@ int main() {
                   fsm_button_pressed(i+6);
                 }
             }
-            
+           printf("ferdig med å lagre orders\n"); 
 
             //check if order exists
             int previous_order = NO_FLOOR;
@@ -48,7 +52,7 @@ int main() {
               fsm_order_exists();
             }
             previous_order = next_order;
-
+            printf("ferdig med å få order");
 
 
             //check if previous correct floor is reached

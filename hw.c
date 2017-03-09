@@ -62,19 +62,16 @@ int hw_get_floor(){
 *checks all the buttons on a given floor and returns up (1), down (-1), both (2) or none (0).
 *the returned value will be stored in the global variable 'direction'
 ******************************/
-int hw_get_floor_button_status(int floor) { 											
-        if (elev_get_button_signal(BUTTON_CALL_DOWN, floor) == 1 && elev_get_button_signal(BUTTON_CALL_UP, floor) == 1) {			
-		return 2;								
-}												
-	else if (elev_get_button_signal(BUTTON_CALL_UP, floor) == 1) {			
-                return 1;
-}
-	else if (elev_get_button_signal(BUTTON_CALL_DOWN, floor) == 1) {		
-		return -1;
-}	
-	else {
-		return 0;								
-        }
+int hw_get_floor_button_status(int floor) {
+    if (floor != 3 & floor != 0) {
+        if (elev_get_button_signal(BUTTON_CALL_DOWN,floor) == 1  &&
+            elev_get_button_signal(BUTTON_CALL_UP,floor)== 1) return 2;    
+    } else if (floor != 3) {
+        if (elev_get_button_signal(BUTTON_CALL_UP,floor) == 1) return 1;
+    } else if (floor != 0) {
+        if (elev_get_button_signal(BUTTON_CALL_DOWN, floor) == 1) return -1;        
+    }
+    return 0;								      
 }
 
 
@@ -118,8 +115,8 @@ elev_motor_direction_t hw_set_direction(elev_motor_direction_t direction) {
 *sets the floor indicator light. this function automatically turns off all other light if another is set.
 *******************************/
 void hw_set_floor_indicator_light(int floor) {						
-    elev_set_floor_indicator(floor);
-}
+    if (floor != -1)  elev_set_floor_indicator(floor);
+   }
 
 
 /*******************************

@@ -11,7 +11,7 @@ int orders[10] = {0}; //order queue. 0-3: order buttons inside the elevator, 4-6
 int q_check_floor(floor_t current_floor) {
 	switch(current_floor) {
 		case NO_FLOOR:
-                        break;
+                break;
                 case FIRST_FLOOR:
 			if (orders[0]==1 || orders[4]==1) {			//check orders on first floor
 				return 1;
@@ -28,13 +28,15 @@ int q_check_floor(floor_t current_floor) {
 			}
 			return 0;
 		case FOURTH_FLOOR:
-			if (orders[3]==1 || orders[9]) {			//check fourth floor
+			if (orders[3]==1 || orders[9]==1) {			//check fourth floor
 				return 1;
 			}
-		
+            return 0;
 		default:
 			return 0;
-	}
+
+    }
+    return 0;
 }
 
 
