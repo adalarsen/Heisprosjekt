@@ -1,3 +1,5 @@
+#ifndef QUEUE.H
+#define QUEUE.H
 #include "elevator_fsm.h"
 #include <stdio.h>
 
@@ -14,3 +16,5 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
 void q_store_order(int new_order); 							//stores a new order in orders 
 
 
+
+#endif

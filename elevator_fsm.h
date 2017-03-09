@@ -1,3 +1,5 @@
+#ifndef ELEVATOR_FSM.H
+#define ELEVATOR_FSM.H
 #include <stdio.h>
 #include "elev.h"
 #include "queue.h"
@@ -33,3 +35,5 @@ int fsm_is_stop_button_pressed();			  			//checks if stop button is pushed. Retu
 //TIMER
 void fsm_time_out();                                                            //close door if time is out (after three seconds)
 
+
+#endif

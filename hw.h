@@ -1,3 +1,5 @@
+#ifndef HW.H
+#define HW.H
 #include "elev.h"
 #include <stdio.h>
 
@@ -27,3 +29,6 @@ void hw_set_floor_indicator_light(FLOOR floor);         //set elevator indicator
 void hw_set_elev_button_light(FLOOR floor);		//set light in elevator button if the correct button for floor is pushedi
 void hw_set_floor_button_light(FLOOR floor, int button, int value);		//set light in floor buttons if pushed
 
+
+
+#endif

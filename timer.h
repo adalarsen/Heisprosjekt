@@ -1,3 +1,5 @@
+#ifndef TIMER.H
+#define TIMER.H
 #include <stdio.h>
 #include "elev.h"
 
@@ -7,3 +9,5 @@ int timer_is_time_out();
 
 
 
+
+#endif
