@@ -136,16 +136,23 @@ void hw_set_elev_button_light(int floor) {
 *sets the floor button lights depending on which button is pushed and on and off depending on value.
 *******************************/
 void hw_set_floor_button_light(int floor, int button, int value) {              			
-        if (button == 2) {								//if both buttons at a floor is pushed
-		elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
-		elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
+       
+    if (button == 2) {								//if both buttons at a floor is pushed
+		if (floor != 0 && floor != 3) {
+            elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
+		    elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
 }
-	else if (button == 1) {								//if the up button is pushed
-		elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
+}
+	else if (button == 1) {        //if the up button is pushed
+		if (floor != 3) {
+            elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
+}
 }
 	else if (button == -1) {							//if the down button is pushed
-		elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
-}
+        if (floor != 0) {
+            elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
+     }
+    }
 }
 
 

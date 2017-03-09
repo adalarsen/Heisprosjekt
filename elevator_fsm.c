@@ -230,6 +230,10 @@ void fsm_button_pressed(int button_pressed) {                                   
 void fsm_stop_button_pressed(){		
 	q_delete_all();
 	hw_set_stop_button_light(1);
+    for (int i=0;i<4;i++) {
+        hw_set_elev_button_light(i);
+        hw_set_floor_button_light(i,2,0);
+    }
 	switch(current_state) {
 		case RUN:
 		case IDLE:

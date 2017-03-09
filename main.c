@@ -77,7 +77,7 @@ int main() {
 
 
             //check stop button
-            int previous_stop_button = 0;
+            int previous_stop_button;
             int stop = fsm_is_stop_button_pressed();
             if (stop!=previous_stop_button) {
               if (stop) {
