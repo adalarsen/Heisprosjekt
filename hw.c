@@ -54,7 +54,7 @@ int hw_get_stop_button_status() {
 *returns 1-4 if on a floor, 0 if between floors.
 ******************************/
 int hw_get_floor(){
-	return elev_get_floor_sensor_signal()+1;
+	return elev_get_floor_sensor_signal();
 }
 
 
@@ -63,7 +63,6 @@ int hw_get_floor(){
 *the returned value will be stored in the global variable 'direction'
 ******************************/
 int hw_get_floor_button_status(int floor) { 											
-
         if (elev_get_button_signal(BUTTON_CALL_DOWN, floor) == 1 && elev_get_button_signal(BUTTON_CALL_UP, floor) == 1) {			
 		return 2;								
 }												
@@ -128,7 +127,6 @@ void hw_set_floor_indicator_light(int floor) {
 *turns the light on if a order has been placed in the floor. 
 *******************************/
 void hw_set_elev_button_light(int floor) {						
-        floor -=1;                                                                      //convert to 0-3 floor index
 	if (elev_get_floor_sensor_signal() == floor) {					
 		elev_set_button_lamp(BUTTON_COMMAND,floor,0);				
 }	else {
@@ -141,7 +139,6 @@ void hw_set_elev_button_light(int floor) {
 *sets the floor button lights depending on which button is pushed and on and off depending on value.
 *******************************/
 void hw_set_floor_button_light(int floor, int button, int value) {              			
-	floor -=1;                                                                      //convert to 0-3 floor index
         if (button == 2) {								//if both buttons at a floor is pushed
 		elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
 		elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);

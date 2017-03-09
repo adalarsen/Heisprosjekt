@@ -21,11 +21,11 @@ int main() {
             //save orders
        //     int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
             for (int i=0; i<4; i++) {
-                order_buttons[i] = hw_get_elev_button_status(i+1);
+                order_buttons[i] = hw_get_elev_button_status(i);
                 if (order_buttons[i]==1) {
                   fsm_button_pressed(i);
                 }
-                int button = hw_get_floor_button_status(i+1);
+                int button = hw_get_floor_button_status(i);
                 if (button==2) {
                   order_buttons[i+4]=1;
                   order_buttons[i+6]=1;
@@ -42,9 +42,9 @@ int main() {
             
 
             //check if order exists
-            int previous_order = -1;
+            int previous_order = NO_FLOOR;
             int next_order = fsm_get_order();
-            if ((next_order != previous_order) && next_order!=0) {
+            if ((next_order != previous_order) && next_order!=NO_FLOOR) {
               fsm_order_exists();
             }
             previous_order = next_order;
@@ -52,9 +52,9 @@ int main() {
 
 
             //check if previous correct floor is reached
-            int previous_correct_floor = -1;
+            int previous_correct_floor = NO_FLOOR;
             int floor = hw_get_floor();
-            if ((floor!=0) && (floor!=0)) {
+            if ((floor!=NO_FLOOR) && (floor!=previous_correct_floor)) {
               fsm_floor_reached(floor);
             }
             previous_correct_floor = floor;
