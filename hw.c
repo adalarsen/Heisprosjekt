@@ -17,7 +17,7 @@ void hw_close_door() {
 *opens door by setting the door lamp if the elevator is at a floor and standing still. 
 *******************************/
 void hw_open_door() {                                                                    
-        if (elev_get_floor_sensor_signal() != -1) {                //catches possible glitch in case open door is called and the elevator is running or inbetween floors
+        if (elev_get_floor_sensor_signal() != -1) {     //catches possible glitch in case open door is called and the elevator is running or inbetween floors
             elev_set_door_open_lamp(1);
 		}
 		else {
@@ -144,14 +144,14 @@ void hw_set_elev_button_light(int floor) {
 *******************************/
 void hw_set_floor_button_light(int floor, int button, int value) {              			
 	floor -=1;                                                                      //convert to 0-3 floor index
-        if (button == 2) {													//if both buttons at a floor is pushed
+        if (button == 2) {								//if both buttons at a floor is pushed
 		elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
 		elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
 }
-	else if (button == 1) {												//if the up button is pushed
+	else if (button == 1) {								//if the up button is pushed
 		elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
 }
-	else if (button == -1) {											//if the down button is pushed
+	else if (button == -1) {							//if the down button is pushed
 		elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
 }
 }
