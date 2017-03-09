@@ -132,13 +132,13 @@ FLOOR q_get_order(FLOOR current_floor, elev_motor_direction_t current_direction)
             		if(orders[i]==1){
                 		switch(i) {
                     			case 0:
-                                        case 4:
-                                                return FIRST_FLOOR;
-					case 1:
+                                case 4:
+                                    return FIRST_FLOOR;
+			                	case 1:
                     			case 5:
                     			case 7:
                         			return SECOND_FLOOR;
-                   			case 2:
+                   		    	case 2:
                     			case(6):
                     			case(8):
                         			return THIRD_FLOOR;
