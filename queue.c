@@ -53,22 +53,20 @@ void q_delete_order(FLOOR current_floor){
             orders[0]=0;
 			orders[4]=0;
 			break;
-                case 2:
+        case 2:
 			orders[1]=0;
 			orders[5]=0;
 			orders[7]=0;
 			break;
-                       
-                case 3:
+        case 3:
 			orders[2]=0;
 			orders[6]=0;
 			orders[8]=0;
-                    	break;
-
-                case 4:
+            break;
+        case 4:
 			orders[3]=0;
 			orders[9]=0;
-                        break;
+            break;
 	}
 }
 
