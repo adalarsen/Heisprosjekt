@@ -1,5 +1,5 @@
-#ifndef HW.H
-#define HW.H
+#ifndef HW
+#define HW
 #include "elev.h"
 #include <stdio.h>
 
