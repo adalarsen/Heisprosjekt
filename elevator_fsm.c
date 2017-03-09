@@ -10,8 +10,8 @@
 /*******************************
 *constants keeping track of what floor the elevator is at or last passed, and which state it is currently in
 *******************************/
-FLOOR current_floor = NO_FLOOR;
-STATE current_state = INIT;
+floor_t current_floor = NO_FLOOR;
+state_t current_state = INIT;
 elev_motor_direction_t direction;
 
 
@@ -26,7 +26,7 @@ void fsm_init() {
                 printf("Unable to initialize elevator hardware!\n");
                 return 1;
         }
-	FLOOR floor = hw_get_floor(); 
+	floor_t floor = hw_get_floor(); 
 	while(floor != FIRST_FLOOR) {								//move elevator to 1st floor
 		direction = hw_set_direction(DIRN_DOWN);
 		floor = hw_get_floor();
@@ -59,7 +59,7 @@ int fsm_get_order() {
 *checks to see if the current floor is in the queue. if so delete from queue.
 *updates current_floor
 *******************************/
-int fsm_floor_reached(FLOOR floor){
+int fsm_floor_reached(floor_t floor){
 	current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
 	if (q_check_floor(current_floor)) {     					//check if there are any orders on current_floor
@@ -78,9 +78,9 @@ int fsm_floor_reached(FLOOR floor){
 			case IDLE:
 				direction = hw_set_direction(DIRN_STOP);
 				hw_set_elev_button_light(current_floor);
-                                hw_set_floor_button_light(current_floor, button, 0);
-                                q_delete_order(current_floor);
-                                hw_open_door();
+                hw_set_floor_button_light(current_floor, button, 0);
+                q_delete_order(current_floor);
+                hw_open_door();
 				timer_start();
 				current_state = DOOROPEN;
                                 break;
@@ -108,7 +108,7 @@ int fsm_floor_reached(FLOOR floor){
 *setter retningen mot etasjen hvor den neste bestillingen er
 *******************************/
 void fsm_order_exists() {
-	FLOOR new_order = q_get_order();
+	floor_t new_order = q_get_order();
         int button = hw_get_floor_button_status(new_order);
 	int to_floor = current_floor - new_order;				//check if elevator is below or above the ordered floor
 		if (to_floor<0) {						//if elevator is below 
@@ -140,7 +140,7 @@ void fsm_order_exists() {
                                 case RUN:
                                 case IDLE:
                                 case INIT:
-                                        direction hw_set_direction(DIRN_DOWN);
+                                        direction = hw_set_direction(DIRN_DOWN);
                                         hw_set_elev_button_light(new_order);
                                         if (button!=0) {
                                             hw_set_floor_button_light(new_order, button, 1);

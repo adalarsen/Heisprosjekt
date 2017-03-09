@@ -1,5 +1,5 @@
-#ifndef TIMER.H
-#define TIMER.H
+#ifndef TIMER
+#define TIMER
 #include <stdio.h>
 #include "elev.h"
 
