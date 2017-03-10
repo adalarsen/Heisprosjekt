@@ -22,18 +22,18 @@ int main() {
        //     int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
             for (int i=0; i<4; i++) {
                 order_buttons[i] = hw_get_elev_button_status(i);
-                printf("hey");
+                printf("hey\n");
                 if (order_buttons[i]==1) {
                   fsm_button_pressed(i);
                 }
-                printf("hello");
+                printf("hello\n");
                 int button = hw_get_floor_button_status(i);
                 printf("hey hello %d \n",button);
                 if (button==2) {
                   order_buttons[i+4]=1;
                   order_buttons[i+6]=1;
                   fsm_button_pressed(i+4);
-                  printf("check check");
+                  printf("check check\n");
                   fsm_button_pressed(i+6);
                 } else if (button) {
                   order_buttons[i+4]=1;
@@ -43,7 +43,7 @@ int main() {
                   fsm_button_pressed(i+6);
                 }
             }
-           printf("ferdig med å lagre orders\n"); 
+           printf("ferdig med å lagre bestillinger\n"); 
 
             //check if order exists
             int previous_order = NO_FLOOR;
@@ -52,7 +52,7 @@ int main() {
               fsm_order_exists();
             }
             previous_order = next_order;
-            printf("ferdig med å få order");
+            printf("ferdig med å få bestillinger\n");
 
 
             //check if previous correct floor is reached
@@ -61,6 +61,7 @@ int main() {
             if ((floor!=NO_FLOOR) && (floor!=previous_correct_floor)) {
               fsm_floor_reached(floor);
             }
+            printf("ferdig med fsm_floor_reached\n");
             previous_correct_floor = floor;
 
 
@@ -72,6 +73,7 @@ int main() {
                 fsm_time_out();
               }
             }
+            printf("ferdig med å sjekke om det har gått 3 sekunder\n");
             previous_time_out = time;
 
 
@@ -86,6 +88,7 @@ int main() {
                 fsm_stop_button_released();
               }
             }
+            printf("ferdig med å sjekke om stoppknapp er trykket\n")
             previous_stop_button = stop;
 
 	}

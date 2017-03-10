@@ -22,7 +22,8 @@ elev_motor_direction_t direction;
 *initizaling the elevator by moving the elevator to floor 1. 
 *******************************/
 int fsm_init() {
-	if (!elev_init()) { 									//initialize hardware
+	printf("kjører fsm_init\n");
+        if (!elev_init()) { 									//initialize hardware
                 printf("Unable to initialize elevator hardware!\n");
                 return 1;   
     }
@@ -46,6 +47,7 @@ int fsm_init() {
 *returns next order to main
 *******************************/
 int fsm_get_order() {
+        printf("kjører fsm_get_order\n");
         return q_get_order(current_floor, direction);
 }
 
@@ -62,7 +64,8 @@ int fsm_get_order() {
 *updates current_floor
 *******************************/
 void fsm_floor_reached(floor_t floor){
-	current_floor = floor;
+	printf("kjører fsm_floor_reached\n");
+        current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
 	if (q_check_floor(current_floor)) {     					//check if there are any orders on current_floor
 		int button = hw_get_floor_button_status(current_floor);
@@ -110,6 +113,7 @@ void fsm_floor_reached(floor_t floor){
 *setter retningen mot etasjen hvor den neste bestillingen er
 *******************************/
 void fsm_order_exists() {
+        printf("kjører fsm_order_exists\n");
 	floor_t new_order = q_get_order(current_floor, direction);
         int button = hw_get_floor_button_status(new_order);
 	int to_floor = current_floor - new_order;				//check if elevator is below or above the ordered floor
@@ -184,7 +188,8 @@ void fsm_order_exists() {
 *stores a new order when button is pressed
 *******************************/
 void fsm_button_pressed(int button_pressed) {                                                     //convert to 1-4 index
-	switch(current_state) {
+	printf("kjører fsm_button_pressed\n");
+        switch(current_state) {
 		case IDLE:
 		case RUN:
 		case DOOROPEN:
@@ -228,12 +233,13 @@ void fsm_button_pressed(int button_pressed) {                                   
 *deletes all orders in the queue if the stop button is pushed.
 *******************************/
 void fsm_stop_button_pressed(){		
-	q_delete_all();
-	hw_set_stop_button_light(1);
-    for (int i=0;i<4;i++) {
-        hw_set_elev_button_light(i);
-        hw_set_floor_button_light(i,2,0);
-    }
+  prinf("kjører fsm_stop_button_pressed\n");
+  q_delete_all();
+  hw_set_stop_button_light(1);
+  for (int i=0;i<4;i++) {
+    hw_set_elev_button_light(i);
+    hw_set_floor_button_light(i,2,0);
+  }
 	switch(current_state) {
 		case RUN:
 		case IDLE:
@@ -262,6 +268,7 @@ void fsm_stop_button_pressed(){
 *deletes all orders in the queue if the stop button is pushed.
 *******************************/
 void fsm_stop_button_released() {
+        printf("kjører fsm_stop_button_released\n");
 	hw_set_stop_button_light(0);
 	switch(current_state) {
 		case STOPBUTTON:
@@ -284,6 +291,7 @@ void fsm_stop_button_released() {
 *checks if the stop button is pressed. Returns  1 if yes, 0 if no.
 *******************************/
 int fsm_is_stop_button_pressed() {
+        printf("kjører fsm_is_stop_button_pressed\n");
 	return hw_get_stop_button_status();
 }
 
@@ -297,6 +305,7 @@ int fsm_is_stop_button_pressed() {
 *sets a new indicator light every time a floor is reached.
 *******************************/
 void fsm_set_indicator(int floor) {
+        printf("kjører fsm_set_indicator\n");
 	hw_set_floor_indicator_light(floor);
 }
 
@@ -309,6 +318,7 @@ void fsm_set_indicator(int floor) {
 *checks if 3 seconds has passed
 *******************************/
 void fsm_time_out() {
+  printf("kjører fsm_time_out\n");
   switch (current_state) {
     case DOOROPEN:
       hw_close_door();
@@ -320,3 +330,4 @@ void fsm_time_out() {
       break;
     }
 }
+
