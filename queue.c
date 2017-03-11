@@ -118,12 +118,18 @@ if (current_direction == DIRN_UP) {
 			return i;
 		}
 	}
+	for (int i = 3; i>=current_floor; i--) {
+		if (orders[i+6]) { return i; }
+	}
 }
 if (current_direction == DIRN_DOWN) {
-	for (int i=0;i<3;i++) {
+	for (int i=3;i>=0;i--) {
 		if ((current_floor - i)>=0 && (orders[i] || orders[i+6])) {
 			return i;
 		}
+	}
+	for (int i=0; i<=current_floor; i++) {
+		if (orders[i+4]) { return i; }
 	}
 }
 if (current_direction == DIRN_STOP) {
@@ -147,7 +153,7 @@ if (current_direction == DIRN_STOP) {
 			}
 		}
 	}
-//	return 200;
+//	printf("HALELUJA\n");
 }
 //GAMMEL FUNKSJON
 /*

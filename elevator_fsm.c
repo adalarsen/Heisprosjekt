@@ -264,12 +264,18 @@ void fsm_button_pressed(int button_pressed) {                                   
 *******************************/
 void fsm_stop_button_pressed(){		
 //  printf("kjører fsm_stop_button_pressed\n");
-  q_delete_all();
-  hw_set_stop_button_light(1);
-  for (int i=0;i<4;i++) {
-    hw_set_elev_button_light(i);
-    hw_set_floor_button_light(i,2,0);
-  }
+  	q_delete_all();
+  	hw_set_stop_button_light(1);
+  	for (int i=0;i<4;i++) {
+    	hw_set_elev_button_light(i);
+  	}
+
+// BUTTON_CALL / DIRN samsvarer ikke
+  	for (int i=0; i<3; i++) {
+		hw_set_floor_button_light(i,BUTTON_CALL_UP,0);
+		hw_set_floor_button_light(i+1,BUTTON_CALL_DOWN,0);
+
+	}
 	switch(current_state) {
 		case RUN:
 		case IDLE:
