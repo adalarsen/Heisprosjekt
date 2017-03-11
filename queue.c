@@ -11,25 +11,35 @@ int orders[10] = {0}; //order queue. 0-3: order buttons inside the elevator, 4-6
 ************************************/
 int q_check_floor(floor_t current_floor) {
 //	printf("kjører q_check_floor\n");
+	printf("\n");
+	for (int i=0; i<10; i++) {
+		printf("%d, ", orders[i]);
+	}
+	printf("\n");
+	printf("%d\n", current_floor);
         switch(current_floor) {
 		case NO_FLOOR:
-                break;
+            printf("no floor\n");
+				break;
         case FIRST_FLOOR:
+			printf("floor 1\n");
 			if (orders[0]==1 || orders[4]==1) {
 				return 1;
-			}
+			} break;
 		case SECOND_FLOOR:
+			printf("floor 2\n");
 			if (orders[1]==1 || orders[5]==1 || orders[7]==1) {
 				return 1;
-			}
+			} break;
 		case THIRD_FLOOR:
+			printf("floor 3\n");
 			if (orders[2]==1 || orders[6]==1 || orders[8]==1) {
 				return 1;
-			}
+			} break;
 		case FOURTH_FLOOR:
 			if (orders[3]==1 || orders[9]==1) {	 
                           return 1;
-			}
+			} break;
 
 		default:
 			return 0;
@@ -103,15 +113,15 @@ void q_delete_all(){
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction){    
 //NY FUNKSJON
 if (current_direction == DIRN_UP) {
-	for (int i=FIRST_FLOOR;i<FOURTH_FLOOR;i++) {
-		if ((current_floor - i)<0 && (orders[i] || orders[i+4])) {
+	for (int i=1;i<=3;i++) {
+		if ((current_floor - i)<=0 && (orders[i] || orders[i+4])) {
 			return i;
 		}
 	}
 }
 if (current_direction == DIRN_DOWN) {
-	for (int i=SECOND_FLOOR;i<5;i++) {
-		if ((current_floor - i)>0 && (orders[i] || orders[i+6])) {
+	for (int i=0;i<3;i++) {
+		if ((current_floor - i)>=0 && (orders[i] || orders[i+6])) {
 			return i;
 		}
 	}
@@ -137,6 +147,7 @@ if (current_direction == DIRN_STOP) {
 			}
 		}
 	}
+//	return 200;
 }
 //GAMMEL FUNKSJON
 /*

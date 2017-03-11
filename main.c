@@ -7,7 +7,7 @@
 
 
 int main() {
-	
+//noe	
 	
         int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
           
@@ -26,8 +26,6 @@ int main() {
 //		int new_floor = NO_FLOOR;
 
         while (1) {
-			printf("\n");
-			for (int i=0;i<4;i++) { printf("%d, ",order_buttons[i]); }
 /*
 		floor = hw_get_floor();
 		printf("floor %d \n",floor);
@@ -52,7 +50,6 @@ int main() {
 			for (int i=0; i<4;i++) {
   //              printf("hello\n");
                int button = hw_get_floor_button_status(i);
-				printf("%d, ", button);
     //            printf("hey hello %d \n",button);
 //                  printf("check check\n");
                // if (button==1) {
