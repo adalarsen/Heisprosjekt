@@ -102,21 +102,21 @@ void q_delete_all(){
 ***********************************/
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction){    
 //NY FUNKSJON
-if (direction == DIRN_UP) {
+if (current_direction == DIRN_UP) {
 	for (int i=FIRST_FLOOR;i<FOURTH_FLOOR;i++) {
 		if ((current_floor - i)<0 && (orders[i] || orders[i+4])) {
 			return i;
 		}
 	}
 }
-if (direction == DIRN_DOWN) {
+if (current_direction == DIRN_DOWN) {
 	for (int i=SECOND_FLOOR;i<5;i++) {
 		if ((current_floor - i)>0 && (orders[i] || orders[i+6])) {
 			return i;
 		}
 	}
 }
-if (direction == DIRN_STOP) {
+if (current_direction == DIRN_STOP) {
 	for (int i=0;i<10;i++) {
 		if (orders[i]==1) {
 			switch(i) {
@@ -218,7 +218,7 @@ if (direction == DIRN_STOP) {
 	}
   //      printf("finner ingen bestillinger\n");
 	return NO_FLOOR; */
-
+return NO_FLOOR;
 }
 
 

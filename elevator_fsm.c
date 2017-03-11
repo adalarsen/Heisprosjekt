@@ -12,8 +12,8 @@
 *******************************/
 floor_t current_floor = NO_FLOOR;
 state_t current_state = INIT;
-elev_motor_direction_t direction;
-
+elev_motor_direction_t direction = DIRN_STOP;
+int tentative_direction = DIRN_STOP;
 
 
 
@@ -30,11 +30,13 @@ int fsm_init() {
 	floor_t floor = hw_get_floor(); 
 	while(floor != FIRST_FLOOR) {								//move elevator to 1st floor
 		direction = hw_set_direction(DIRN_DOWN);
+		tentative_direction = DIRN_DOWN;
 		floor = hw_get_floor();
                 hw_set_floor_indicator_light(floor);
                 
 	}
 	direction = hw_set_direction(DIRN_STOP);
+	tentative_direction = DIRN_STOP;
         current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
         q_delete_all();										//delete all orders in the order queue
@@ -124,7 +126,7 @@ void fsm_order_exists() {
 				case INIT:
 					direction = hw_set_direction(DIRN_UP);
 					hw_set_elev_button_light(new_order);
-					printf("retning: %d",direction);
+//					printf("retning: %d",direction);
                     if (button!=0) {
                        hw_set_floor_button_light(new_order, button, 1);
                     }
@@ -194,6 +196,7 @@ void fsm_order_exists() {
 *******************************/
 void fsm_button_pressed(int button_pressed) {                                                     //convert to 1-4 index
 //	printf("kjører fsm_button_pressed\n");
+printf("   %d, ", button_pressed);
         switch(current_state) {
 		case IDLE:
 		case RUN:
@@ -206,7 +209,6 @@ void fsm_button_pressed(int button_pressed) {                                   
                             case 2:
                             case 3:
                                 hw_set_elev_button_light(button_pressed);
-								printf("3. Har satt på lys fordi knapp er trykket");
                                 break;
                             case 4:
                             case 5:

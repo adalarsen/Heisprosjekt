@@ -22,33 +22,44 @@ int main() {
 		int previous_correct_floor = NO_FLOOR;
 		int previous_time_out = 0;
 		int previous_stop_button = 0;
-		
+//		int floor = NO_FLOOR;
+//		int new_floor = NO_FLOOR;
 
         while (1) {
-
-
+			printf("\n");
+			for (int i=0;i<4;i++) { printf("%d, ",order_buttons[i]); }
+/*
+		floor = hw_get_floor();
+		printf("floor %d \n",floor);
+		new_floor = hw_get_elev_button_status(floor);
+		q_store_order(new_floor);
+		int direction = hw_set_direction(1);
+		int tentative_direction = 1;
+		int ordered_floor = q_get_order(floor,tentative_direction);
+		printf("Ordered floors: %d \n",ordered_floor);		
+*/
             //save orders
        //     int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
             for (int i=0; i<4; i++) {
-                order_buttons[i] = hw_get_elev_button_status(i);
+                int button_status = hw_get_elev_button_status(i);
+				
                // printf("1. Oppdaterte queue.\n");
-                if (order_buttons[i]==1) {
-				printf("2. Ser at etasjen er trykket");							//JENNY: Ser at når denne er 1 vil ikke heisen fullføre den fort nok slik at i=1 vil gå i all evighet. 
-                  fsm_button_pressed(i);
+                if (button_status==1) {//	printf("2. Ser at etasjen er trykket");							//JENNY: Ser at når denne er 1 vil ikke heisen fullføre den fort nok slik at i=1 vil gå i all evighet. 
+                    order_buttons[i] = 1;
+					fsm_button_pressed(i);
                 }
+			}
+			for (int i=0; i<4;i++) {
   //              printf("hello\n");
-                int button = hw_get_floor_button_status(i);
+               int button = hw_get_floor_button_status(i);
+				printf("%d, ", button);
     //            printf("hey hello %d \n",button);
-                if (button==2) {
-                  order_buttons[i+4]=1;
-                  order_buttons[i+6]=1;
-                  fsm_button_pressed(i+4);
 //                  printf("check check\n");
-                  fsm_button_pressed(i+6);
-                }if (button) {
+               // if (button==1) {
+				if (button == 1 || button == 2){
                   order_buttons[i+4]=1;
-                  fsm_button_pressed(i+4);
-                }if (button==-1) {
+                  fsm_button_pressed(i+4); 
+                }if (button==-1 || button == 2) {
                   order_buttons[i+6]=1;
                   fsm_button_pressed(i+6);
                 }
