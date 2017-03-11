@@ -31,8 +31,9 @@ int main() {
        //     int order_buttons[10] = {0};            //0-3 elev buttons, 4-6 button up, 7-9 button down
             for (int i=0; i<4; i++) {
                 order_buttons[i] = hw_get_elev_button_status(i);
-//                printf("hey\n");
+               // printf("1. Oppdaterte queue.\n");
                 if (order_buttons[i]==1) {
+				printf("2. Ser at etasjen er trykket");							//JENNY: Ser at når denne er 1 vil ikke heisen fullføre den fort nok slik at i=1 vil gå i all evighet. 
                   fsm_button_pressed(i);
                 }
   //              printf("hello\n");
@@ -92,7 +93,7 @@ int main() {
 				previous_stop_button = 0;
               }
             }
-            printf("ferdig med å sjekke om stoppknapp er trykket\n");
+//            printf("ferdig med å sjekke om stoppknapp er trykket\n");
 
 	}
 	return 0;

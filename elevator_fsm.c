@@ -124,19 +124,22 @@ void fsm_order_exists() {
 				case INIT:
 					direction = hw_set_direction(DIRN_UP);
 					hw_set_elev_button_light(new_order);
-                                        if (button!=0) {
-                                            hw_set_floor_button_light(new_order, button, 1);
-                                        }
-                                        current_state = RUN;
+					printf("retning: %d",direction);
+                    if (button!=0) {
+                       hw_set_floor_button_light(new_order, button, 1);
+                    }
+                    current_state = RUN;
+					printf("state RUN");
 					break;
 				case DOOROPEN:
 					hw_close_door();
 					direction = hw_set_direction(DIRN_UP);
 					hw_set_elev_button_light(new_order);
-                                        if (button!=0) {
-                                            hw_set_floor_button_light(new_order, button, 1);
-                                        }
-                                        current_state = RUN;
+                    if (button!=0) {
+                    	hw_set_floor_button_light(new_order, button, 1);
+                     }
+                     current_state = RUN;
+					printf("state RUN");
 					break;
 				case STOPBUTTON:
 					break;
@@ -152,7 +155,8 @@ void fsm_order_exists() {
                                             hw_set_floor_button_light(new_order, button, 1);
                                         }
                                         current_state = RUN;
-                                        break;
+                                        printf("state RUN ned");
+										break;
                                 case DOOROPEN:
                                         hw_close_door();
                                         direction = hw_set_direction(DIRN_DOWN);
@@ -161,6 +165,7 @@ void fsm_order_exists() {
                                             hw_set_floor_button_light(new_order, button, 1);
                                         }
                                         current_state = RUN;
+										printf("state RUN ned");
                                         break;
                                 case STOPBUTTON:
                                         break;
@@ -201,6 +206,7 @@ void fsm_button_pressed(int button_pressed) {                                   
                             case 2:
                             case 3:
                                 hw_set_elev_button_light(button_pressed);
+								printf("3. Har satt på lys fordi knapp er trykket");
                                 break;
                             case 4:
                             case 5:
