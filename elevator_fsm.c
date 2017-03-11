@@ -52,6 +52,7 @@ int fsm_get_order() {
 	current_floor = hw_get_floor();
 	//printf("%d   %d\n",direction,tentative_direction);
   //      printf("kjører fsm_get_order\n");
+
         return q_get_order(current_floor, tentative_direction);
 }
 
@@ -71,12 +72,13 @@ void fsm_floor_reached(floor_t floor){
 //	printf("kjører fsm_floor_reached\n");
         current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
-	int next_order = 0;
-	next_order = q_get_order(current_floor, direction);
+        int next_order = 0;
+        next_order = q_get_order(current_floor, direction);
 
 //	printf("CURRENT STATE = %d\n", current_state);
 	if (q_check_floor(current_floor)) {     					//check if there are any orders on current_floor
 //		printf("But is it though?\n");
+
 		int button = hw_get_floor_button_status(current_floor);
 		printf("Floor = %d,   order = %d,  TentDir = %d   button = %d\n", current_floor, next_order, tentative_direction, button);
 
