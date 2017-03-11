@@ -101,6 +101,45 @@ void q_delete_all(){
 *function will loop in main when the elevator reaches a floor, therefore it cannot be used if elevator is on NO_FLOOR (0) 
 ***********************************/
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction){    
+//NY FUNKSJON
+if (direction == DIRN_UP) {
+	for (int i=FIRST_FLOOR;i<FOURTH_FLOOR;i++) {
+		if ((current_floor - i)<0 && (orders[i] || orders[i+4])) {
+			return i;
+		}
+	}
+}
+if (direction == DIRN_DOWN) {
+	for (int i=SECOND_FLOOR;i<5;i++) {
+		if ((current_floor - i)>0 && (orders[i] || orders[i+6])) {
+			return i;
+		}
+	}
+}
+if (direction == DIRN_STOP) {
+	for (int i=0;i<10;i++) {
+		if (orders[i]==1) {
+			switch(i) {
+				case 0:
+				case 4:
+					return FIRST_FLOOR;
+				case 1:
+				case 5:
+				case 7:
+					return SECOND_FLOOR;
+				case 2:
+				case 6:
+				case 8:
+					return THIRD_FLOOR;
+				case 3:
+				case 9:
+					return FOURTH_FLOOR;
+			}
+		}
+	}
+}
+//GAMMEL FUNKSJON
+/*
 	//printf("kjører q_get_order\n");
         if (q_check_floor(current_floor)) {					//check if there is an order on the elevator's current floor
       //  	printf("sjekker bestillinger i etasje %d", current_floor, "\n");
@@ -178,7 +217,8 @@ floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direct
 		}
 	}
   //      printf("finner ingen bestillinger\n");
-	return NO_FLOOR;
+	return NO_FLOOR; */
+
 }
 
 
