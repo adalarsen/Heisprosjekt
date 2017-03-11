@@ -33,4 +33,8 @@ int fsm_is_stop_button_pressed();			  			//checks if stop button is pushed. Retu
 void fsm_time_out();                                                            //close door if time is out (after three seconds)
 
 
+//DOOR
+int fsm_is_door_open();
+
+
 #endif

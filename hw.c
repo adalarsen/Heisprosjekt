@@ -17,7 +17,7 @@ void hw_close_door() {
 *opens door by setting the door lamp if the elevator is at a floor and standing still. 
 *******************************/
 void hw_open_door() {
-     //   printf("kjører hw_open_door\n");
+        printf("kjører hw_open_door\n");
         if (elev_get_floor_sensor_signal() != -1) {     //catches possible glitch in case open door is called and the elevator is running or inbetween floors
             elev_set_door_open_lamp(1);
 		}

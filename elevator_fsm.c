@@ -81,7 +81,7 @@ void fsm_floor_reached(floor_t floor){
 		printf("Floor = %d,   order = %d,  TentDir = %d   button = %d\n", current_floor, next_order, tentative_direction, button);
 
         if (next_order == current_floor || (tentative_direction) == button || button==2 || (tentative_direction==0)){
-			printf("For reals?\n");
+			printf("For reals?,   state = %d \n", current_state);
             switch (current_state) {
 				case RUN:
 					if (next_order > current_floor) {
@@ -91,7 +91,7 @@ void fsm_floor_reached(floor_t floor){
 					} else {
 						tentative_direction = DIRN_STOP;
 					}
-//					printf("NEXT ORDER =%d \n", next_order);
+					printf("HAAAAALLOOOO \n");
 					direction = hw_set_direction(DIRN_STOP);
                     hw_set_elev_button_light(current_floor);
                     hw_set_floor_button_light(current_floor, button, 0);
@@ -280,7 +280,8 @@ void fsm_stop_button_pressed(){
 		case RUN:
 		case IDLE:
                 case INIT:
-			direction = hw_set_direction(DIRN_STOP);
+					direction = hw_set_direction(DIRN_STOP);
+					tentative_direction = DIRN_STOP;
                         if (hw_get_floor() != NO_FLOOR) {
                                 hw_open_door();
                         } else {
@@ -358,7 +359,8 @@ void fsm_time_out() {
  // printf("kjører fsm_time_out\n");
   switch (current_state) {
     case DOOROPEN:
-      hw_close_door();
+      current_state = IDLE;
+	  hw_close_door();
       break;
     case RUN:
     case IDLE:
@@ -368,3 +370,7 @@ void fsm_time_out() {
     }
 }
 
+
+int fsm_is_door_open() {
+	return(current_state == DOOROPEN);
+}

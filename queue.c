@@ -111,23 +111,39 @@ void q_delete_all(){
 *function will loop in main when the elevator reaches a floor, therefore it cannot be used if elevator is on NO_FLOOR (0) 
 ***********************************/
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction){    
-//NY FUNKSJON
+//NY FUNKSJON126     
+
+// does anyone want to get off
+if (orders[current_floor]) { 
+	return current_floor; 
+}
+
 if (current_direction == DIRN_UP) {
-	for (int i=1;i<=3;i++) {
-		if ((current_floor - i)<=0 && (orders[i] || orders[i+4])) {
+	// are there any requests above current floor or at current floor going up
+	for (int i=current_floor; i<3; i++) {
+		if (orders[i] || orders[i+4]) {
 			return i;
 		}
 	}
+	// does anyone want to go to the forth floor
+	if (orders[3]) {return 3;}
+
+	// are there any requests for going down
 	for (int i = 3; i>=current_floor; i--) {
 		if (orders[i+6]) { return i; }
 	}
 }
 if (current_direction == DIRN_DOWN) {
-	for (int i=3;i>=0;i--) {
-		if ((current_floor - i)>=0 && (orders[i] || orders[i+6])) {
+	// are there any requests below current floor or at current floor going down
+	for (int i=current_floor; i>0; i--) {
+		if (orders[i] || orders[i+6]) {
 			return i;
 		}
 	}
+	// does anyone want to go to the first floor
+	if (orders[0]) {return 0;}
+
+	// are there any requests for going up
 	for (int i=0; i<=current_floor; i++) {
 		if (orders[i+4]) { return i; }
 	}

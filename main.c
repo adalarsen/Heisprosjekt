@@ -62,7 +62,23 @@ int main() {
                 }
             }
   //         printf("ferdig med å lagre bestillinger\n"); 
+			
+			
+			//check time
+            int time = timer_is_time_out();
+            if (time != previous_time_out){
+              if (time) {
+                fsm_time_out();
+				
+              } 
+            } 
+        //    printf("ferdig med å sjekke om det har gått 3 sekunder\n");
+            previous_time_out = time;
 
+			
+			// if door is open we will do NOTHING
+			if (fsm_is_door_open()) { continue; }
+			
             //check if order exists
             int next_order = fsm_get_order();
             if ((next_order != previous_order) && next_order!=NO_FLOOR) {
@@ -80,16 +96,6 @@ int main() {
       //      printf("ferdig med fsm_floor_reached\n");
             previous_correct_floor = floor;
 
-
-            //check time
-            int time = timer_is_time_out();
-            if (time != previous_time_out){
-              if (time) {
-                fsm_time_out();
-              }
-            }
-        //    printf("ferdig med å sjekke om det har gått 3 sekunder\n");
-            previous_time_out = time;
 
             //check stop button
             int stop = hw_get_stop_button_status();
