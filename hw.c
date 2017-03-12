@@ -147,24 +147,18 @@ void hw_set_elev_button_light(int floor) {
 /*******************************
 *sets the floor button lights depending on which button is pushed and on and off depending on value.
 *******************************/
-void hw_set_floor_button_light(int floor, int direction, int value) {              			
+void hw_set_floor_button_light(int floor, int buttons_pressed, int value) {              			
  // printf("kjører hw_set_floor_button_light\n");
  // printf("button = %d", button);
-  if (direction  == BUTTON_CALL_UP) {        //if the up button is pushed
+  if (buttons_pressed == 1) {        //if the up button is pushed
     if (floor != 3) {
       elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
     }
-//else if (direction == 2) {
-// if (floor !=3 && floor !=0) {
-//		elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
-//		elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
-//}
-//}
-  } else if (direction == BUTTON_CALL_DOWN) {							//if the down button is pushed
-    if (floor != 0) {
-      elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
+  } else if (buttons_pressed == -1) {			 
+        if (floor != 0) {
+        elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
     }
-  } else if (direction == 2) {
+  } else if (buttons_pressed == 2) {
       if (floor!=0 && floor!=3) {
             elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
             elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
