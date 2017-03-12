@@ -96,7 +96,6 @@ void fsm_floor_reached(floor_t floor){
 					direction = hw_set_direction(DIRN_STOP);
                     hw_set_elev_button_light(current_floor);
                     hw_set_floor_button_light(current_floor, button, 0);
-                    printf("floor light satt til 0 i etasje %d \n", current_floor);
                     q_delete_order(current_floor);
                     hw_open_door();
                     timer_start();
@@ -237,13 +236,11 @@ void fsm_button_pressed(int button_pressed) {
                             case 4:
                             case 5:
                             case 6:
-                                printf("her skal button up lyse");
                                 hw_set_floor_button_light(button_pressed-4, 1, 1);
                                 break;
                             case 7:
                             case 8:
                             case 9:
-                                printf("her skal button down lyse");
                                 hw_set_floor_button_light(button_pressed-6, -1, 1);
                                 break;
                             }
