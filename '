@@ -162,10 +162,9 @@ void fsm_floor_reached(floor_t floor){
 void fsm_order_exists() {
   //      printf("kjører fsm_order_exists\n");
 	current_floor = hw_get_floor();
-	//if (current_floor != -1) {
-//	floor_t new_order = q_get_order(current_floor, tentative_direction);
-	floor_t new_order = fsm_get_order();
-	printf("Order exists. Current floor = %d, Order = %d, tentative dir = %d\n", current_floor, new_order, tentative_direction);
+	if (current_floor != -1) {
+	floor_t new_order = q_get_order(current_floor, tentative_direction);
+	printf("Order exists. Order = %d, tentative dir = %d\n", new_order, tentative_direction);
 	int button_floor = hw_get_floor_button_status(new_order);
 	int button_elev  = hw_get_elev_button_status(new_order);
 	int to_floor = current_floor - new_order;				//check if elevator is below or above the ordered floor
@@ -176,9 +175,9 @@ void fsm_order_exists() {
 				case INIT:
 					direction = hw_set_direction(DIRN_UP);
 					if (button_elev || button_floor == 1 || button_floor == 2)
-						tentative_direction = DIRN_DOWN;
-					else
 						tentative_direction = DIRN_UP;
+					else
+						tentative_direction = DIRN_DOWN;
 //					hw_set_elev_button_light(new_order);
 //					printf("retning: %d",direction);
 //                    if (button!=0) {
@@ -191,9 +190,9 @@ void fsm_order_exists() {
 					hw_close_door();
 					direction = hw_set_direction(DIRN_UP);
 					if (button_elev || button_floor == 1 || button_floor == 2)
-                                                tentative_direction = DIRN_DOWN;
-                                        else
                                                 tentative_direction = DIRN_UP;
+                                        else
+                                                tentative_direction = DIRN_DOWN;
 
 //					hw_set_elev_button_light(new_order);
 //                    if (button!=0) {
@@ -257,7 +256,9 @@ void fsm_order_exists() {
                                         break;
                         }
 		}
-	//} else if (current_state = STOPBUTTON) {}
+	} else if (current_state = STOPBUTTON) {
+		
+	}
 	
 	printf("Tentative direction after setting = %d\n", tentative_direction);
 	

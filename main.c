@@ -77,23 +77,27 @@ int main() {
 
 			
 			// if door is open we will do NOTHING
-			if (fsm_is_door_open()) { continue; }
+			if (fsm_is_door_open()) { //printf("Døøøøøøøør\n"); 
+				continue; }
 			
             //check if order exists
             int next_order = fsm_get_order();
             if ((next_order != previous_order) && (next_order!=NO_FLOOR)) {
               fsm_order_exists();
+	      printf("Check 2\n");
             }
             previous_order = next_order;
     //        printf("ferdig med å få bestillinger\n");
-
+	    printf("Check 1\n");
 
             //check if previous correct floor is reached
             int floor = hw_get_floor();
             if (((floor!=NO_FLOOR) && (floor!=previous_correct_floor)) || ((floor==previous_correct_floor) && (fsm_get_direction()==DIRN_STOP) && floor!=NO_FLOOR)) {
-		printf("current_floor = %d \n current_direction = %d \n",floor,fsm_get_direction());
+//		printf("current_floor = %d \n current_direction = %d \n",floor,fsm_get_direction());
               fsm_floor_reached(floor);
             }
+	    printf("Check 3\n");
+	    q_print_orders();
       //      printf("ferdig med fsm_floor_reached\n");
             previous_correct_floor = floor;
 

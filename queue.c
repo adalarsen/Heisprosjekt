@@ -5,6 +5,16 @@
 int orders[10] = {0}; //order queue. 0-3: order buttons inside the elevator, 4-6: up buttons,7-9: down buttons
 
 
+void q_print_orders() {
+	printf("Current orders: ");
+        for (int i=0; i<10; i++) {
+                printf("%d, ", orders[i]);
+        }
+        printf("\n");
+	
+}
+
+
 
 /************************************
 *returns 1 if there is an order on current_floor
@@ -112,8 +122,8 @@ void q_delete_all(){
 ***********************************/
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction){    
 //NY FUNKSJON126     
-//if (current_floor == -1) printf("MAYDAY MAYDAY, NO FLOOR\n");
-
+if (current_floor == -1) printf("MAYDAY MAYDAY, NO FLOOR\n");
+//printf("Direktorat = %d\n", current_direction);
 
 // is there even a floor?
 //if (current_floor == -1) {
@@ -124,6 +134,9 @@ floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direct
 //}
 
 
+//int arro[3] = {1,2,3};
+//printf("%d, %d, %d, %d\n", arro[-1], arro[0], arro[1], arro[2]);
+
 // does anyone want to get off
 if (orders[current_floor]) { 
 	return current_floor; 
@@ -133,32 +146,40 @@ if (current_direction == DIRN_UP) {
 	// are there any requests above current floor or at current floor going up
 	for (int i=current_floor; i<3; i++) {
 		if (orders[i] || orders[i+4]) {
+//			printf("Vi skal opp og hit: %d\n", current_floor);
 			return i;
 		}
 	}
 	// does anyone want to go to the forth floor
-	if (orders[3]) {return 3;}
+	if (orders[3]) {//printf("Vi skal til 4. etasje\n"); 
+		return 3;}
 
 	// are there any requests for going down
 	for (int i = 3; i>=current_floor; i--) {
-		if (orders[i+6]) { return i; }
+		if (orders[i+6]) { //printf("Vi skal opp og hit: %d\n og de vil ned", current_floor); 
+			return i; }
 	}
 }
 if (current_direction == DIRN_DOWN) {
 	// are there any requests below current floor or at current floor going down
 	for (int i=current_floor; i>0; i--) {
 		if (orders[i] || orders[i+6]) {
+			//printf("Vi skal ned og hit: %d\n", current_floor);
 			return i;
 		}
 	}
 	// does anyone want to go to the first floor
-	if (orders[0]) {return 0;}
+	if (orders[0]) {//printf("Vi skal til 1. etasje\n");
+		return 0;}
 
 	// are there any requests for going up
 	for (int i=0; i<=current_floor; i++) {
-		if (orders[i+4]) { return i; }
+		if (orders[i+4]) { //printf("Vi skal ned og hit: %d\n og de vil opp", current_floor);
+			return i; }
 	}
 }
+
+// ER IKKE DETTE DET SAMME SOM 	g_check_floor?
 if (current_direction == DIRN_STOP) {
 	for (int i=0;i<10;i++) {
 		if (orders[i]==1) {
