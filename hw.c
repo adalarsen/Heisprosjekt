@@ -163,7 +163,7 @@ void hw_set_floor_button_light(int floor, int button_type, int value) {
                   elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
                   }    
       }
-      if (elev_get_floor_signal()==floor){
+      if (elev_get_floor_sensor_signal()==floor){
           printf("elev_get_floor_signal");
                if (floor!=0){
                  elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0); 
