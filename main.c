@@ -81,7 +81,7 @@ int main() {
 			
             //check if order exists
             int next_order = fsm_get_order();
-            if (((next_order != previous_order) || ((next_order==previous_order) && (fsm_get_direction()==DIRN_STOP))) && next_order!=NO_FLOOR) {
+            if ((next_order != previous_order) && (next_order!=NO_FLOOR)) {
               fsm_order_exists();
             }
             previous_order = next_order;
@@ -90,7 +90,7 @@ int main() {
 
             //check if previous correct floor is reached
             int floor = hw_get_floor();
-            if ((floor!=NO_FLOOR) && (floor!=previous_correct_floor)) {
+            if ((floor!=NO_FLOOR) && (floor!=previous_correct_floor) || (floor==previous_correct_floor) && (fsm_get_direction()==DIRN_STOP)) {
               fsm_floor_reached(floor);
             }
       //      printf("ferdig med fsm_floor_reached\n");
