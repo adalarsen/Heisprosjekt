@@ -174,11 +174,11 @@ void fsm_order_exists() {
 				case RUN:
 				case IDLE:
 				case INIT:
-					direction = hw_set_direction(DIRN_UP);
+					direction = hw_set_direction(DIRN_UP); //SE PÅ DISSE. noe med at conditions er feil og hva hvis de ikke stgemmer etcUP
 					if (button_elev || button_floor == 1 || button_floor == 2)
-						tentative_direction = DIRN_DOWN;
-					else
 						tentative_direction = DIRN_UP;
+					else if (button_floor == -1)
+						tentative_direction = DIRN_DOWN;
 //					hw_set_elev_button_light(new_order);
 //					printf("retning: %d",direction);
 //                    if (button!=0) {
@@ -191,9 +191,9 @@ void fsm_order_exists() {
 					hw_close_door();
 					direction = hw_set_direction(DIRN_UP);
 					if (button_elev || button_floor == 1 || button_floor == 2)
-                                                tentative_direction = DIRN_DOWN;
-                                        else
                                                 tentative_direction = DIRN_UP;
+                                        else if (button_floor == -1)
+                                                tentative_direction = DIRN_DOWN;
 
 //					hw_set_elev_button_light(new_order);
 //                    if (button!=0) {
@@ -213,7 +213,7 @@ void fsm_order_exists() {
                                         direction = hw_set_direction(DIRN_DOWN);
 					if (button_elev || button_floor == -1 || button_floor == 2)
                                                 tentative_direction = DIRN_DOWN;
-                                        else
+                                        else if (button_floor == 1)
                                                 tentative_direction = DIRN_UP;
 
 //                                      hw_set_elev_button_light(new_order);
@@ -228,7 +228,7 @@ void fsm_order_exists() {
                                         direction = hw_set_direction(DIRN_DOWN);
 					if (button_elev || button_floor == -1 || button_floor == 2)
                                                 tentative_direction = DIRN_DOWN;
-                                        else
+                                        else if (button_floor == 1)
                                                 tentative_direction = DIRN_UP;
 
 //                                      hw_set_elev_button_light(new_order);
