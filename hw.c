@@ -170,6 +170,7 @@ void hw_set_floor_button_light(int floor, int direction, int value) {
             elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
       }
 }
+}
 
 
 
