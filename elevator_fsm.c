@@ -13,7 +13,7 @@
 floor_t current_floor = NO_FLOOR;
 state_t current_state = INIT;
 elev_motor_direction_t direction = DIRN_STOP;
-int tentative_direction = DIRN_STOP;
+elev_motor_direction_t tentative_direction = DIRN_STOP;
 
 
 
@@ -377,6 +377,6 @@ int fsm_is_door_open() {
 	return(current_state == DOOROPEN);
 }
 
-elev_motor_direction_t fsm_get_direction() {
+elev_motor_direction_t fsm_get_direction(){
       return tentative_direction;
 }
