@@ -150,7 +150,23 @@ void hw_set_elev_button_light(int floor) {
 void hw_set_floor_button_light(int floor, int button_type, int value) {              			
       printf("kjører hw_set_floor_button_light\n");
  // printf("button = %d", button);
-            printf("button_type = %d", button_type);
+      if (button_type==1){
+            if (floor!=3){
+                  elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
+            }
+      } else if (button_type==-1){
+            if (floor!=0){
+                  elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
+            }
+      }
+}
+            
+            
+            
+            
+            
+            
+            /*printf("button_type = %d", button_type);
             if (elev_get_floor_sensor_signal()!=floor){
                   if ((floor != 3) && (button_type==1)) {
                         printf("floor!=\n3");
@@ -171,7 +187,9 @@ void hw_set_floor_button_light(int floor, int button_type, int value) {
                   elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0);
                   elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
       }
-}
+}*/
+
+
 }
   
   /*else if (button_type == 2) {
