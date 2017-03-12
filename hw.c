@@ -150,6 +150,9 @@ void hw_set_elev_button_light(int floor) {
 void hw_set_floor_button_light(int floor, int button_type, int value) {              			
       printf("kjører hw_set_floor_button_light\n");
       printf("button = %d", button_type);
+      if (elev_get_floor_sensor_signal()==floor){
+            value=0;
+      }
       if (button_type==1){
             if (floor!=3){
                   elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
