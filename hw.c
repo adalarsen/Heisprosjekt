@@ -167,10 +167,11 @@ void hw_set_floor_button_light(int floor, int button_type, int value) {
                  elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0); 
             } else if (floor!=3){
                   elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
-            } else if (0<floor<3){
+            } else if ((floor>0) && (floor<3)){
                   elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0);
-                  elev_set button_lamp(BUTTON_CALL_UP, floor, 0);
+                  elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
       }
+}
 }
   
   /*else if (button_type == 2) {
