@@ -17,6 +17,6 @@ void q_delete_all();									//deletes every order (set to 0) in orders
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction);	//returns which floor the next order is on
 void q_store_order(int new_order); 							//stores a new order in orders 
 
-
+void q_print_orders();
 
 #endif
