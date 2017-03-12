@@ -27,7 +27,7 @@ int hw_get_elev_button_status(int floor);               //returns 1-4 if on a fl
 elev_motor_direction_t hw_set_direction(elev_motor_direction_t direction);		//set motor direction to one of the elev_motor_direction_t types 
 void hw_set_floor_indicator_light(int floor);         //set elevator indicator light for floor
 void hw_set_elev_button_light(int floor);		//set light in elevator button if the correct button for floor is pushedi
-void hw_set_floor_button_light(int floor, int button, int value);		//set light in floor buttons if pushed
+void hw_set_floor_button_light(int floor, int button, int direction);		//set light in floor buttons if pushed
 
 
 

@@ -161,7 +161,7 @@ void fsm_order_exists() {
 					tentative_direction = DIRN_UP;
 //					hw_set_elev_button_light(new_order);
                     if (button!=0) {
-                    	hw_set_floor_button_light(new_order, button, 1);
+                    	hw_set_floor_button_light(new_order, button, tentative_direction);
                      }
                      current_state = RUN;
 					printf("state RUN");
@@ -237,11 +237,13 @@ void fsm_button_pressed(int button_pressed) {
                             case 4:
                             case 5:
                             case 6:
+                                printf("her skal button up lyse");
                                 hw_set_floor_button_light(button_pressed-4, 1, 1);
                                 break;
                             case 7:
                             case 8:
                             case 9:
+                                printf("her skal button down lyse");
                                 hw_set_floor_button_light(button_pressed-6, -1, 1);
                                 break;
                             }
