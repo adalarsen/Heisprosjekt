@@ -158,9 +158,11 @@ void hw_set_floor_button_light(int floor, int button_type, int value) {
   } else if (button_type == -1) {
         printf("BUTTON_CALL_DOWN satt til 0\n");
         if (floor != 0) {
-        elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
-    }
-  } /*else if (button_type == 2) {
+        elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);}    }
+  }
+}
+  
+  /*else if (button_type == 2) {
       if (floor!=0 && floor!=3) {
             elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
             elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
