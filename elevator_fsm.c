@@ -72,19 +72,19 @@ void fsm_floor_reached(floor_t floor){
 //	printf("kjører fsm_floor_reached\n");
         current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
-        int next_order = q_get_order(current_floor, direction);
-	
+      //  int next_order = q_get_order(current_floor, direction);	
 //	printf("CURRENT STATE = %d\n", current_state);
 	if (q_check_floor(current_floor)) {     					//check if there are any orders on current_floor
 //		printf("But is it though?\n");
-
+		int next_order = q_get_order(current_floor,tentative_direction);
 		int button = hw_get_floor_button_status(current_floor);
 		printf("Floor = %d,   order = %d,  TentDir = %d   button = %d\n", current_floor, next_order, tentative_direction, button);
-		hw_set_floor_button_light(current_floor,button,0);
-		hw_set_floor_button_light(current_floor,-button,0);
-        if (next_order == current_floor || (tentative_direction) == button || button==2 || (tentative_direction==0)){
+		if (floor != NO_FLOOR) {
+			hw_set_floor_button_light(current_floor,button,0);
+			hw_set_floor_button_light(current_floor,-button,0); }
+        	if (next_order == current_floor || (tentative_direction) == button || button==2 || (tentative_direction==0)){
 			printf("For reals?,   state = %d \n", current_state);
-            switch (current_state) {
+            		switch (current_state) {
 				case RUN:
 					if (next_order > current_floor) {
 						tentative_direction = DIRN_UP;
@@ -95,18 +95,21 @@ void fsm_floor_reached(floor_t floor){
 					}
 					printf("HAAAAALLOOOO \n");
 					direction = hw_set_direction(DIRN_STOP);
-                    hw_set_elev_button_light(current_floor);
-                    hw_set_floor_button_light(current_floor, button, 0);
-                    q_delete_order(current_floor);
-                    hw_open_door();
-                    timer_start();
+                    			hw_set_elev_button_light(current_floor);
+                    			hw_set_floor_button_light(current_floor, 1, 0);
+					hw_set_floor_button_light(current_floor,-1,0);
+                    			q_delete_order(current_floor);
+                    			hw_open_door();
+                    			timer_start();
+					hw_set_floor_button_light(0,1,0);
 					current_state = DOOROPEN;
                                 break;
 			case IDLE:
 				tentative_direction = DIRN_STOP;
 				direction = hw_set_direction(DIRN_STOP);
 				hw_set_elev_button_light(current_floor);
-                                hw_set_floor_button_light(current_floor, button, 0);
+                                hw_set_floor_button_light(current_floor, 1, 0);
+				hw_set_floor_button_light(current_floor,-1,0);
                                 q_delete_order(current_floor);
                                 hw_open_door();
 				timer_start();
@@ -114,7 +117,7 @@ void fsm_floor_reached(floor_t floor){
                                 break;
 			case INIT:
 				hw_set_elev_button_light(current_floor);
-                                hw_set_floor_button_light(current_floor, button, 0);
+                                //hw_set_floor_button_light(current_floor, 1, 0);
                                 q_delete_order(current_floor);
                                 hw_open_door();
 				timer_start();
@@ -123,8 +126,8 @@ void fsm_floor_reached(floor_t floor){
 			case STOPBUTTON:
                                 break;
 			case DOOROPEN:
-                                hw_set_elev_button_light(current_floor);
-                                hw_set_floor_button_light(current_floor, button, 0);
+  //                              hw_set_elev_button_light(current_floor);
+//                                hw_set_floor_button_light(current_floor, button, 0);
 				break;
 		}
                 }
@@ -161,7 +164,7 @@ void fsm_order_exists() {
 					tentative_direction = DIRN_UP;
 //					hw_set_elev_button_light(new_order);
                     if (button!=0) {
-                    	hw_set_floor_button_light(new_order, button, tentative_direction);
+                    //	hw_set_floor_button_light(new_order, button, tentative_direction);
                      }
                      current_state = RUN;
 					printf("state RUN");

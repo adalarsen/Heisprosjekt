@@ -277,7 +277,14 @@ void q_store_order(int new_order){
 }
 
 
+/*00int q_floor_order_status(floor_t floor) {
+	//Funksjon som erstatter button
+	int status = hw;
+	switch(floor) {
+		case 0:
+				
 
+} */
 
 
 
