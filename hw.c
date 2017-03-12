@@ -150,16 +150,29 @@ void hw_set_elev_button_light(int floor) {
 void hw_set_floor_button_light(int floor, int button_type, int value) {              			
  // printf("kjører hw_set_floor_button_light\n");
  // printf("button = %d", button);
-  if (button_type == 1) {        //if the up button is pushed
-    if (floor != 3) {
-      elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
-      printf("BUTTON_CALL_UP satt til 0\n");
-    }
-  } else if (button_type == -1) {
-        printf("BUTTON_CALL_DOWN satt til 0\n");
-        if (floor != 0) {
-        elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);}    }
-  }
+  if (elev_get_floor_sensor_signal()==floor){
+        if (button_type == 1) {        //if the up button is pushed
+            if (floor != 3) {
+                  elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
+                  printf("BUTTON_CALL_UP satt til 0\n");
+            }
+        } else if (button_type == -1) {
+            printf("BUTTON_CALL_DOWN satt til 0\n");
+            if (floor != 0) {
+                  elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0);
+                  }    
+            }
+      } else {
+            if (button_type==1){
+                  if (floor!=3){
+                        elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
+                  }
+            } else if (button_type==-1){
+                  if (floor!=0){
+                        elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
+                  }
+            }
+      }
 }
   
   /*else if (button_type == 2) {
