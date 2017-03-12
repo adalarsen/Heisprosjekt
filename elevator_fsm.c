@@ -219,7 +219,7 @@ void fsm_order_exists() {
 /*******************************
 *stores a new order when button is pressed
 *******************************/
-void fsm_button_pressed(int button_pressed) {                                                     //convert to 1-4 index
+void fsm_button_pressed(int button_pressed) {
 //	printf("kjører fsm_button_pressed\n");
         switch(current_state) {
 		case IDLE:
@@ -237,12 +237,12 @@ void fsm_button_pressed(int button_pressed) {                                   
                             case 4:
                             case 5:
                             case 6:
-                                hw_set_floor_button_light(button_pressed-4, BUTTON_CALL_UP, 1);
+                                hw_set_floor_button_light(button_pressed-4, 1, 1);
                                 break;
                             case 7:
                             case 8:
                             case 9:
-                                hw_set_floor_button_light(button_pressed-6, BUTTON_CALL_DOWN, 1);
+                                hw_set_floor_button_light(button_pressed-6, -1, 1);
                                 break;
                             }
 			break;
