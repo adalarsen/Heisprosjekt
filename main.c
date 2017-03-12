@@ -90,7 +90,7 @@ int main() {
 
             //check if previous correct floor is reached
             int floor = hw_get_floor();
-            if (((floor!=NO_FLOOR) && (floor!=previous_correct_floor))/* || ((floor==previous_correct_floor) && (fsm_get_direction()==DIRN_STOP))*/) {
+            if (((floor!=NO_FLOOR) && (floor!=previous_correct_floor)) || ((floor==previous_correct_floor) && (fsm_get_direction()==DIRN_STOP))) {
               fsm_floor_reached(floor);
             }
       //      printf("ferdig med fsm_floor_reached\n");
