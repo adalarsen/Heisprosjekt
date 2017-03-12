@@ -148,11 +148,13 @@ void hw_set_elev_button_light(int floor) {
 *sets the floor button lights depending on which button is pushed and on and off depending on value.
 *******************************/
 void hw_set_floor_button_light(int floor, int button_type, int value) {              			
- // printf("kjører hw_set_floor_button_light\n");
+      printf("kjører hw_set_floor_button_light\n");
  // printf("button = %d", button);
   if (elev_get_floor_sensor_signal()==floor){
+        printf("heis er på floor inne i set_floor_button_light");
         if (button_type == 1) {        //if the up button is pushed
             if (floor != 3) {
+                  printf("floor!=3 && button_type==1");
                   elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
                   printf("BUTTON_CALL_UP satt til 0\n");
             }
@@ -164,6 +166,7 @@ void hw_set_floor_button_light(int floor, int button_type, int value) {
             }
       } else {
             if (button_type==1){
+                  printf("floor button satt til value");
                   if (floor!=3){
                         elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
                   }
