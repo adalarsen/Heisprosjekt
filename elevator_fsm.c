@@ -72,8 +72,7 @@ void fsm_floor_reached(floor_t floor){
 //	printf("kjører fsm_floor_reached\n");
         current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
-        int next_order = 0;
-        next_order = q_get_order(current_floor, direction);
+        int next_order = q_get_order(current_floor, direction);
 
 //	printf("CURRENT STATE = %d\n", current_state);
 	if (q_check_floor(current_floor)) {     					//check if there are any orders on current_floor

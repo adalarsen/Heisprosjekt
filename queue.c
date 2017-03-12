@@ -112,7 +112,8 @@ void q_delete_all(){
 ***********************************/
 floor_t q_get_order(floor_t current_floor, elev_motor_direction_t current_direction){    
 //NY FUNKSJON126     
-if (current_floor == -1) printf("MAYDAY MAYDAY, NO FLOOR\n");
+//if (current_floor == -1) printf("MAYDAY MAYDAY, NO FLOOR\n");
+
 
 // is there even a floor?
 //if (current_floor == -1) {

@@ -147,25 +147,40 @@ void hw_set_elev_button_light(int floor) {
 /*******************************
 *sets the floor button lights depending on which button is pushed and on and off depending on value.
 *******************************/
-void hw_set_floor_button_light(int floor, int buttons_pressed, int value) {              			
+void hw_set_floor_button_light(int floor, int button_type, int value) {              			
  // printf("kjører hw_set_floor_button_light\n");
  // printf("button = %d", button);
-  if (buttons_pressed == 1) {        //if the up button is pushed
+/*  if (button_type == 1) {        //if the up button is pushed
     if (floor != 3) {
       elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
       printf("BUTTON_CALL_UP satt til 0\n");
     }
-  } else if (buttons_pressed == -1) {
+  } else if (button_type == -1) {
         printf("BUTTON_CALL_DOWN satt til 0\n");
         if (floor != 0) {
         elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
     }
-  } /*else if (buttons_pressed == 2) {
+  }*/ /*else if (button_type == 2) {
       if (floor!=0 && floor!=3) {
             elev_set_button_lamp(BUTTON_CALL_DOWN, floor, value);
             elev_set_button_lamp(BUTTON_CALL_UP, floor, value);
       }
 }*/
+
+
+      if (elev_get_floor_sensor_signal()==floor){
+            if (button_type==1 && floor!=3){
+                  elev_set_button_lamp(BUTTON_CALL_UP, floor, 0);
+            } else if (button_type==-1 && floor!=0){
+                  elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 0);
+      } else {
+            if (button_type==1 && floor!=3){
+                  elev_set_button_lamp(BUTTON_CALL_UP, floor, 1);
+            } else if (button_type==-1 && floor!=0) {
+                  elev_set_button_lamp(BUTTON_CALL_DOWN, floor, 1);
+            }
+      }
+      }
 }
 
 
