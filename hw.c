@@ -190,7 +190,6 @@ void hw_set_floor_button_light(int floor, int button_type, int value) {
 }*/
 
 
-}
   
   /*else if (button_type == 2) {
       if (floor!=0 && floor!=3) {
