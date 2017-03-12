@@ -97,6 +97,7 @@ void fsm_floor_reached(floor_t floor){
 					direction = hw_set_direction(DIRN_STOP);
                     hw_set_elev_button_light(current_floor);
                     hw_set_floor_button_light(current_floor, button, 0);
+                    printf("floor light satt til 0 i etasje %d \n", current_floor);
                     q_delete_order(current_floor);
                     hw_open_door();
                     timer_start();
