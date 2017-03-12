@@ -56,7 +56,7 @@ int fsm_get_order() {
 	if (current_floor != -1)
         	return q_get_order(current_floor, tentative_direction);
 
-	// if the elevator has stopped we wish to find any order
+	//if the elevator has stopped we wish to find any order
 	if (current_state == STOPBUTTON)
 		for (int i=0; i<4; i++)
 			if (q_check_floor(i) == 1) {printf("Til %d\n", i);
@@ -118,13 +118,13 @@ void fsm_floor_reached(floor_t floor){
 					current_state = DOOROPEN;
                                 break;
 			case IDLE:
-				if (next_order > current_floor) {
-                                                tentative_direction = DIRN_UP;
-                                        } else if (next_order < current_floor) {
-                                                tentative_direction = DIRN_DOWN;
-                                        } else {
-                                                //tentative_direction = DIRN_STOP;
-                                        }
+				//if (next_order > current_floor) {
+                                  //              tentative_direction = DIRN_UP;
+                                    //    } else if (next_order < current_floor) {
+                                      //          tentative_direction = DIRN_DOWN;
+                                        //} else {
+                                                tentative_direction = DIRN_STOP;
+                                        //}
 
 				direction = hw_set_direction(DIRN_STOP);
 				hw_set_elev_button_light(current_floor);
@@ -175,10 +175,10 @@ void fsm_order_exists() {
 				case IDLE:
 				case INIT:
 					direction = hw_set_direction(DIRN_UP); //SE PÅ DISSE. noe med at conditions er feil og hva hvis de ikke stgemmer etcUP
-					if (button_elev || button_floor == 1 || button_floor == 2)
+				//	if (button_elev || button_floor == 1 || button_floor == 2)
 						tentative_direction = DIRN_UP;
-					else if (button_floor == -1)
-						tentative_direction = DIRN_DOWN;
+				//	else if (button_floor == -1)
+				//		tentative_direction = DIRN_DOWN;
 //					hw_set_elev_button_light(new_order);
 //					printf("retning: %d",direction);
 //                    if (button!=0) {
@@ -190,10 +190,10 @@ void fsm_order_exists() {
 				case DOOROPEN:
 					hw_close_door();
 					direction = hw_set_direction(DIRN_UP);
-					if (button_elev || button_floor == 1 || button_floor == 2)
+				//	if (button_elev || button_floor == 1 || button_floor == 2)
                                                 tentative_direction = DIRN_UP;
-                                        else if (button_floor == -1)
-                                                tentative_direction = DIRN_DOWN;
+                                  //      else if (button_floor == -1)
+                                    //            tentative_direction = DIRN_DOWN;
 
 //					hw_set_elev_button_light(new_order);
 //                    if (button!=0) {
@@ -211,14 +211,14 @@ void fsm_order_exists() {
                                 case IDLE:
                                 case INIT:
                                         direction = hw_set_direction(DIRN_DOWN);
-					if (button_elev || button_floor == -1 || button_floor == 2)
+				//	if (button_elev || button_floor == -1 || button_floor == 2)
                                                 tentative_direction = DIRN_DOWN;
-                                        else if (button_floor == 1)
-                                                tentative_direction = DIRN_UP;
+                                  //      else if (button_floor == 1)
+                                    //            tentative_direction = DIRN_UP;
 
 //                                      hw_set_elev_button_light(new_order);
 //                                        if (button!=0) {
-//                                          hw_set_floor_button_light(new_order, button, 1);
+//                               i           hw_set_floor_button_light(new_order, button, 1);
 //                                        }
                                         current_state = RUN;
 //                                        printf("state RUN ned");
@@ -226,10 +226,10 @@ void fsm_order_exists() {
                                 case DOOROPEN:
                                         hw_close_door();
                                         direction = hw_set_direction(DIRN_DOWN);
-					if (button_elev || button_floor == -1 || button_floor == 2)
+				//	if (button_elev || button_floor == -1 || button_floor == 2)
                                                 tentative_direction = DIRN_DOWN;
-                                        else if (button_floor == 1)
-                                                tentative_direction = DIRN_UP;
+                                  //      else if (button_floor == 1)
+                                    //            tentative_direction = DIRN_UP;
 
 //                                      hw_set_elev_button_light(new_order);
 //                                        if (button!=0) {
