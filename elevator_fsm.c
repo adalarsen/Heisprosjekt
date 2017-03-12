@@ -73,14 +73,15 @@ void fsm_floor_reached(floor_t floor){
         current_floor = floor;
         hw_set_floor_indicator_light(current_floor);
         int next_order = q_get_order(current_floor, direction);
-
+	
 //	printf("CURRENT STATE = %d\n", current_state);
 	if (q_check_floor(current_floor)) {     					//check if there are any orders on current_floor
 //		printf("But is it though?\n");
 
 		int button = hw_get_floor_button_status(current_floor);
 		printf("Floor = %d,   order = %d,  TentDir = %d   button = %d\n", current_floor, next_order, tentative_direction, button);
-
+		hw_set_floor_button_light(current_floor,button,0);
+		hw_set_floor_button_light(current_floor,-button,0);
         if (next_order == current_floor || (tentative_direction) == button || button==2 || (tentative_direction==0)){
 			printf("For reals?,   state = %d \n", current_state);
             switch (current_state) {
@@ -273,8 +274,8 @@ void fsm_stop_button_pressed(){
 
 // BUTTON_CALL / DIRN samsvarer ikke
   	for (int i=0; i<3; i++) {
-		hw_set_floor_button_light(i,BUTTON_CALL_UP,0);
-		hw_set_floor_button_light(i+1,BUTTON_CALL_DOWN,0);
+		hw_set_floor_button_light(i,1,0);
+		hw_set_floor_button_light(i+1,-1,0);
 
 	}
 	switch(current_state) {
