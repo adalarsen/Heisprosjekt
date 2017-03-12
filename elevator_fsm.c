@@ -376,3 +376,7 @@ void fsm_time_out() {
 int fsm_is_door_open() {
 	return(current_state == DOOROPEN);
 }
+
+elev_motor_direction_t fsm_get_direction() {
+      return tentative_direction;
+}
