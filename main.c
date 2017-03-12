@@ -81,7 +81,7 @@ int main() {
 			
             //check if order exists
             int next_order = fsm_get_order();
-            if (((next_order != previous_order) || (next_order==previous_order && fsm_get_direction==DIRN_STOP)) && next_order!=NO_FLOOR) {
+            if (((next_order != previous_order) || ((next_order==previous_order) && (fsm_get_direction()==DIRN_STOP))) && next_order!=NO_FLOOR) {
               fsm_order_exists();
             }
             previous_order = next_order;
