@@ -82,7 +82,8 @@ int main() {
 			
             //check if order exists
             int next_order = fsm_get_order();
-            if ((next_order != previous_order) && (next_order!=NO_FLOOR)) {
+            printf("next order %d \n",next_order);
+            if ((next_order != previous_order) &&  (next_order!=NO_FLOOR)) {
               fsm_order_exists();
 	      printf("Check 2\n");
             }
@@ -107,14 +108,16 @@ int main() {
             if (stop!=previous_stop_button) {
               if (stop) {
                 fsm_stop_button_pressed();
-				previous_stop_button = stop;
+			   } else
                 fsm_stop_button_released();
-				previous_stop_button = 0;
+
               }
+				previous_stop_button = stop;
+//                previous_order = NO_FLOOR;
             }
 //            printf("ferdig med å sjekke om stoppknapp er trykket\n");
 
-	}
+	
 	return 0;
 }
 

@@ -406,6 +406,7 @@ void fsm_stop_button_released() {
 		case STOPBUTTON:
 			hw_close_door();
 			current_state = IDLE;
+            tentative_direction = DIRN_STOP;
 			break;
 		case IDLE:
 		case INIT:
@@ -414,6 +415,7 @@ void fsm_stop_button_released() {
 			hw_close_door();
 			direction = hw_set_direction(DIRN_STOP);
 			current_state = IDLE;
+            tentative_direction = DIRN_STOP;
 			break;
 	}
 }
